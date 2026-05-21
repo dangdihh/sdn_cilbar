@@ -1,3 +1,8 @@
+{{--
+    navbar.blade.php
+    Lokasi: resources/views/components/navbar.blade.php
+--}}
+
 @php
     $currentRoute = Route::currentRouteName() ?? '';
 
@@ -9,13 +14,23 @@
             'route'    => null,
             'name'     => 'akademik',
             'dropdown' => [
-                ['label' => 'Kurikulum',       'route' => 'akademik.kurikulum'],
-                ['label' => 'Ekstrakurikuler', 'route' => 'akademik.ekskul'],
-                ['label' => 'Prestasi',        'route' => 'akademik.prestasi'],
+                ['label' => 'Kurikulum',         'route' => 'akademik.kurikulum'],
+                ['label' => 'Kalender Akademik', 'route' => 'akademik.kalender'],
+                ['label' => 'Tenaga Pendidik',   'route' => 'akademik.pendidik'],
             ],
         ],
-        ['label' => 'Kegiatan', 'route' => 'kegiatan', 'name' => 'kegiatan'],
-        ['label' => 'PPDB',     'route' => 'ppdb',     'name' => 'ppdb'],
+        [
+            'label'    => 'Kegiatan',
+            'route'    => null,
+            'name'     => 'kegiatan',
+            'dropdown' => [
+                ['label' => 'Ekstrakurikuler', 'route' => 'kegiatan.ekskul'],
+                ['label' => 'Prestasi',        'route' => 'kegiatan.prestasi'],
+                ['label' => 'Dokumentasi',     'route' => 'kegiatan.dokumentasi'],
+                ['label' => 'Berita Sekolah',  'route' => 'kegiatan.berita'],
+            ],
+        ],
+        ['label' => 'PPDB', 'route' => 'ppdb', 'name' => 'ppdb'],
     ];
 
     $isActive = fn(string $name) => str_starts_with($currentRoute, $name);
@@ -28,10 +43,6 @@
     }
     .logo-shimmer:hover .shimmer-bar {
         animation: shimmer 0.55s ease forwards;
-    }
-    @keyframes nav-underline-in {
-        from { transform: scaleX(0); }
-        to   { transform: scaleX(1); }
     }
     .nav-link-animated .underline-bar {
         transform-origin: left center;
@@ -63,10 +74,8 @@
                              inline-block">
                     SDN CILEDUG BARAT
                 </span>
-                {{-- Shimmer bar --}}
                 <span class="shimmer-bar absolute inset-y-0 w-8 bg-gradient-to-r from-transparent via-white/50 to-transparent
                              pointer-events-none -translate-x-full" aria-hidden="true"></span>
-                {{-- Bottom line --}}
                 <span class="absolute bottom-0 left-0 h-[2px] w-full rounded-full bg-primary-200 overflow-hidden" aria-hidden="true">
                     <span class="absolute inset-0 bg-primary-400 origin-left scale-x-0 transition-transform duration-300
                                  group-hover:scale-x-100"></span>
@@ -92,7 +101,6 @@
                                 <span class="underline-bar absolute bottom-0 left-3.5 right-3.5 h-[2px] rounded-full bg-primary-400"></span>
                             </button>
 
-                            {{-- Dropdown --}}
                             <div
                                 x-show="open"
                                 x-transition:enter="transition ease-out duration-150"
@@ -107,7 +115,7 @@
                                 @foreach ($item['dropdown'] as $sub)
                                     <a href="{{ route($sub['route']) }}"
                                        class="group/sub flex items-center gap-2.5 px-4 py-2.5 text-[13px] font-jakarta text-gray-600
-                                              hover:bg-primary-50 hover:text-primary-600 transition-colors duration-120
+                                              hover:bg-primary-50 hover:text-primary-600 transition-colors duration-150
                                               {{ Route::currentRouteName() === $sub['route'] ? 'bg-primary-50 text-primary-600 font-medium' : '' }}">
                                         <span class="w-1 h-1 rounded-full bg-primary-300 group-hover/sub:bg-primary-400 transition-colors flex-shrink-0"></span>
                                         {{ $sub['label'] }}
@@ -127,7 +135,7 @@
                 @endforeach
             </nav>
 
-            {{-- ── CTA + Hamburger ── --}}
+            {{-- ── CTA kanan (desktop) + Hamburger (mobile) ── --}}
             <div class="flex items-center gap-3">
                 <a href="{{ route('kontak') }}"
                    class="hidden lg:inline-flex items-center gap-2 px-4 py-[9px] rounded-lg
@@ -189,7 +197,8 @@
                         <div x-show="subOpen" x-transition class="pl-4 flex flex-col gap-0.5 mb-1" style="display:none;">
                             @foreach ($item['dropdown'] as $sub)
                                 <a href="{{ route($sub['route']) }}"
-                                   class="px-3 py-2.5 rounded-lg text-[13px] font-jakarta text-gray-500 hover:bg-primary-50 hover:text-primary-600 transition-colors
+                                   class="px-3 py-2.5 rounded-lg text-[13px] font-jakarta text-gray-500
+                                          hover:bg-primary-50 hover:text-primary-600 transition-colors
                                           {{ Route::currentRouteName() === $sub['route'] ? 'bg-primary-50 text-primary-600 font-medium' : '' }}">
                                     {{ $sub['label'] }}
                                 </a>
@@ -205,6 +214,7 @@
                 @endif
             @endforeach
 
+            {{-- Hubungi Kami di mobile menu --}}
             <div class="pt-2 pb-1 border-t border-gray-100 mt-1">
                 <a href="{{ route('kontak') }}"
                    class="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg
