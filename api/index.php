@@ -1,7 +1,8 @@
 <?php
 
-// Alternatif bypass langsung ke autoload dan bootstrap
+// Menggunakan base path absolut untuk menjamin file autoload & bootstrap ketahuan posisinya
 require __DIR__ . '/../vendor/autoload.php';
+
 $app = require_once __DIR__ . '/../bootstrap/app.php';
 
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
