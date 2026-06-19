@@ -6,24 +6,28 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('pengumumans', function (Blueprint $table) {
+        Schema::create('pengumuman', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->text('description');          // preview singkat
-            $table->longText('body')->nullable();  // konten detail lengkap
-            $table->enum('category', ['Penting', 'Akademik', 'Acara', 'Libur'])->default('Akademik');
+            $table->text('description');
+            $table->string('category'); // Penting, Akademik, Acara, Libur, PPDB
             $table->boolean('is_important')->default(false);
-            $table->boolean('is_published')->default(false);
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('pengumumans');
+        Schema::dropIfExists('pengumuman');
     }
 };

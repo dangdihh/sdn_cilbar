@@ -1,10 +1,7 @@
-{{--
-    navbar.blade.php
-    Lokasi: resources/views/components/navbar.blade.php
---}}
-
 @php
     $currentRoute = Route::currentRouteName() ?? '';
+    // Mengambil nilai parameter 'kategori' dari URL yang sedang aktif (jika ada)
+    $currentKategori = Request::route('kategori') ?? '';
 
     $navItems = [
         ['label' => 'Beranda',  'route' => 'home',     'name' => 'home'],
@@ -14,9 +11,9 @@
             'route'    => null,
             'name'     => 'akademik',
             'dropdown' => [
-                ['label' => 'Kurikulum',         'route' => 'akademik.kurikulum'],
-                ['label' => 'Kalender Akademik', 'route' => 'akademik.kalender'],
-                ['label' => 'Tenaga Pendidik',   'route' => 'akademik.pendidik'],
+                ['label' => 'Kurikulum',         'route' => 'akademik.kurikulum', 'params' => []],
+                ['label' => 'Kalender Akademik', 'route' => 'akademik.kalender',  'params' => []],
+                ['label' => 'Tenaga Pendidik',   'route' => 'akademik.pendidik',  'params' => []],
             ],
         ],
         [
@@ -24,13 +21,13 @@
             'route'    => null,
             'name'     => 'kegiatan',
             'dropdown' => [
-                ['label' => 'Ekstrakurikuler', 'route' => 'kegiatan.ekskul'],
-                ['label' => 'Prestasi',        'route' => 'kegiatan.prestasi'],
-                ['label' => 'Dokumentasi',     'route' => 'kegiatan.dokumentasi'],
-                ['label' => 'Berita Sekolah',  'route' => 'kegiatan.berita'],
+                ['label' => 'Ekstrakurikuler', 'route' => 'kegiatan.kategori', 'params' => ['kategori' => 'ekstrakurikuler']],
+                ['label' => 'Prestasi',        'route' => 'kegiatan.kategori', 'params' => ['kategori' => 'prestasi']],
+                ['label' => 'Dokumentasi',     'route' => 'kegiatan.kategori', 'params' => ['kategori' => 'dokumentasi']],
+                ['label' => 'Berita Sekolah',  'route' => 'kegiatan.kategori', 'params' => ['kategori' => 'berita']],
             ],
         ],
-        ['label' => 'PPDB', 'route' => 'ppdb', 'name' => 'ppdb'],
+        ['label' => 'PPDB', 'route' => 'ppdb.index', 'name' => 'ppdb'],
     ];
 
     $isActive = fn(string $name) => str_starts_with($currentRoute, $name);
@@ -113,10 +110,14 @@
                                 style="display:none;"
                             >
                                 @foreach ($item['dropdown'] as $sub)
-                                    <a href="{{ route($sub['route']) }}"
+                                    @php
+                                        // FIX AKURASI MENU AKTIF: Cek kecocokan nama rute SEKALIGUS isi parameter kategorinya
+                                        $isSubActive = ($currentRoute === $sub['route']) && (!isset($sub['params']['kategori']) || $currentKategori === $sub['params']['kategori']);
+                                    @endphp
+                                    <a href="{{ route($sub['route'], $sub['params'] ?? []) }}"
                                        class="group/sub flex items-center gap-2.5 px-4 py-2.5 text-[13px] font-jakarta text-gray-600
                                               hover:bg-primary-50 hover:text-primary-600 transition-colors duration-150
-                                              {{ Route::currentRouteName() === $sub['route'] ? 'bg-primary-50 text-primary-600 font-medium' : '' }}">
+                                              {{ $isSubActive ? 'bg-primary-50 text-primary-600 font-medium' : '' }}">
                                         <span class="w-1 h-1 rounded-full bg-primary-300 group-hover/sub:bg-primary-400 transition-colors flex-shrink-0"></span>
                                         {{ $sub['label'] }}
                                     </a>
@@ -196,10 +197,13 @@
                         </button>
                         <div x-show="subOpen" x-transition class="pl-4 flex flex-col gap-0.5 mb-1" style="display:none;">
                             @foreach ($item['dropdown'] as $sub)
-                                <a href="{{ route($sub['route']) }}"
+                                @php
+                                    $isMobileSubActive = ($currentRoute === $sub['route']) && (!isset($sub['params']['kategori']) || $currentKategori === $sub['params']['kategori']);
+                                @endphp
+                                <a href="{{ route($sub['route'], $sub['params'] ?? []) }}"
                                    class="px-3 py-2.5 rounded-lg text-[13px] font-jakarta text-gray-500
                                           hover:bg-primary-50 hover:text-primary-600 transition-colors
-                                          {{ Route::currentRouteName() === $sub['route'] ? 'bg-primary-50 text-primary-600 font-medium' : '' }}">
+                                          {{ $isMobileSubActive ? 'bg-primary-50 text-primary-600 font-medium' : '' }}">
                                     {{ $sub['label'] }}
                                 </a>
                             @endforeach
