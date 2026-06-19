@@ -122,6 +122,7 @@
         .icon-akademik { background:#fef9c3; color:#ca8a04; }
         .icon-acara    { background:#cffafe; color:#0891b2; }
         .icon-libur    { background:#ffedd5; color:#ea580c; }
+        .icon-ppdb     { background:#e0f6fa; color:#1A8DA3; }
         .icon-default  { background:#f1f5f9; color:#64748b; }
 
         /* Badge colors */
@@ -129,6 +130,7 @@
         .badge-akademik { background:#fef9c3; color:#92400e; }
         .badge-acara    { background:#cffafe; color:#0e7490; }
         .badge-libur    { background:#ffedd5; color:#c2410c; }
+        .badge-ppdb     { background:#e0f6fa; color:#1A8DA3; }
         .badge-default  { background:#f1f5f9; color:#475569; }
 
         /* Horizontal scroll filter on mobile */
@@ -178,7 +180,7 @@
             <div class="mt-8 mb-8" data-aos="fade-up" data-aos-delay="80" data-aos-duration="600">
                 <div class="filter-scroll flex items-center gap-2.5 overflow-x-auto pb-1">
                     @php
-                        $filters = ['Semua', 'Penting', 'Akademik', 'Acara', 'Libur'];
+                        $filters = ['Semua', 'Penting', 'Akademik', 'Acara', 'Libur', 'PPDB'];
                     @endphp
                     @foreach($filters as $filter)
                     <button
@@ -222,12 +224,13 @@
 
                         {{-- Determine category meta --}}
                         @php
-                            $cat   = strtolower($notification->category ?? 'default');
+                            $cat     = strtolower($notification->category ?? 'default');
                             $iconMap = [
                                 'penting'  => ['icon' => 'triangle-alert',   'wrap' => 'icon-penting',  'badge' => 'badge-penting'],
                                 'akademik' => ['icon' => 'file-text',         'wrap' => 'icon-akademik', 'badge' => 'badge-akademik'],
                                 'acara'    => ['icon' => 'calendar-days',     'wrap' => 'icon-acara',    'badge' => 'badge-acara'],
                                 'libur'    => ['icon' => 'calendar-off',      'wrap' => 'icon-libur',    'badge' => 'badge-libur'],
+                                'ppdb'     => ['icon' => 'user-plus',         'wrap' => 'icon-ppdb',     'badge' => 'badge-ppdb'],
                             ];
                             $meta  = $iconMap[$cat] ?? ['icon' => 'bell', 'wrap' => 'icon-default', 'badge' => 'badge-default'];
                             $isImportant = $notification->is_important ?? false;
@@ -241,9 +244,6 @@
                             x-transition:leave="transition ease-in duration-150"
                             x-transition:leave-start="opacity-100"
                             x-transition:leave-end="opacity-0"
-                            data-aos="fade-up"
-                            data-aos-delay="{{ ($index % 8) * 60 }}"
-                            data-aos-duration="550"
                         >
                             <a
                                 href="{{ route('pengumuman.show', $notification->slug) }}"
@@ -374,6 +374,8 @@
             return {
                 activeFilter: 'Semua',
                 loading: true,
+                // AMBIL DATA DARI LARAVEL LANGSUNG KE ALPINE
+                items: @json($notifications->items()), 
 
                 init() {
                     // Simulate short load so skeleton is visible briefly
@@ -393,10 +395,9 @@
 
                 shouldShow(category) {
                     if (this.activeFilter === 'Semua') return true;
-                    return category === this.activeFilter;
+                    return category.toLowerCase() === this.activeFilter.toLowerCase();
                 }
             }
         }
     </script>
-
 </x-layout>

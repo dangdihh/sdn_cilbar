@@ -145,7 +145,7 @@
         }
 
         /* Cursor glow */
-        #cursor-glow {
+        .cursor-glow-element {
             pointer-events: none;
             position: fixed;
             border-radius: 50%;
@@ -160,33 +160,27 @@
     </style>
 
     {{-- Cursor glow --}}
-    <div id="cursor-glow"></div>
+    <div id="cursor-glow" class="cursor-glow-element"></div>
 
     {{-- ===========================
-         SECTION 1 — HERO
+          SECTION 1 — HERO
     =========================== --}}
     <section class="relative min-h-[92vh] flex items-center bg-gradient-to-br from-[#f0fbfc] via-white to-[#fafff7] overflow-hidden px-6 md:px-12 lg:px-20 py-20">
 
-        {{-- Background blobs --}}
         <div class="blob-1 absolute -top-24 -left-24 w-80 h-80 rounded-full bg-[#1A8DA3]/10 blur-3xl pointer-events-none"></div>
         <div class="blob-2 absolute top-10 right-0 w-64 h-64 rounded-full bg-[#FFF59D]/60 blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-0 left-1/3 w-96 h-40 rounded-full bg-[#1A8DA3]/05 blur-2xl pointer-events-none"></div>
 
-        {{-- Decorative floating dots --}}
         <div class="float-element absolute top-20 right-1/4 w-3 h-3 rounded-full bg-[#1A8DA3]/30 pointer-events-none"></div>
         <div class="float-element absolute bottom-32 left-16 w-2 h-2 rounded-full bg-[#FFF59D] border border-yellow-300 pointer-events-none" style="animation-delay:1.5s"></div>
 
         <div class="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-            {{-- LEFT --}}
             <div class="space-y-7" data-aos="fade-right" data-aos-duration="800">
-                {{-- Badge --}}
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e0f6fa] border border-[#1A8DA3]/25 text-[#1A8DA3] text-xs font-semibold tracking-widest uppercase">
                     <span class="w-1.5 h-1.5 rounded-full bg-[#1A8DA3] animate-pulse"></span>
                     Mencerdaskan & Menyenangkan
                 </div>
 
-                {{-- Heading --}}
                 <h1 class="font-headline text-4xl md:text-5xl lg:text-[3.4rem] font-bold leading-tight text-gray-900">
                     Wujudkan Masa Depan
                     <span class="text-[#1A8DA3] relative">
@@ -198,14 +192,12 @@
                     Buah Hati Anda
                 </h1>
 
-                {{-- Description --}}
                 <p class="text-gray-500 text-base md:text-lg leading-relaxed max-w-md">
                     Di SDN Ciledug Barat, kami memadukan kurikulum unggulan dengan lingkungan belajar yang suportif untuk membentuk karakter siswa yang berprestasi.
                 </p>
 
-                {{-- CTA Buttons --}}
                 <div class="flex flex-wrap gap-4 pt-1">
-                    <a href="#" class="btn-ripple group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#1A8DA3] text-white font-semibold text-sm shadow-lg shadow-[#1A8DA3]/30 hover:bg-[#157a8e] hover:scale-105 hover:shadow-[#1A8DA3]/40 transition-all duration-300">
+                    <a href="/ppdb" class="btn-ripple group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#1A8DA3] text-white font-semibold text-sm shadow-lg shadow-[#1A8DA3]/30 hover:bg-[#157a8e] hover:scale-105 hover:shadow-[#1A8DA3]/40 transition-all duration-300">
                         Daftar Sekarang
                         <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -219,7 +211,6 @@
                     </a>
                 </div>
 
-                {{-- Stats strip --}}
                 <div class="flex flex-wrap gap-8 pt-4">
                     @foreach([['500+','Siswa Aktif'],['20+','Ekskul'],['A','Akreditasi']] as $stat)
                     <div>
@@ -230,30 +221,22 @@
                 </div>
             </div>
 
-            {{-- RIGHT — Hero Image --}}
             <div class="relative flex justify-center lg:justify-end" data-aos="fade-left" data-aos-duration="900">
-                {{-- Glow blobs behind image --}}
                 <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <div class="w-72 h-72 rounded-full bg-[#1A8DA3]/20 blur-3xl"></div>
                 </div>
                 <div class="absolute top-0 right-8 w-32 h-32 rounded-full bg-[#FFF59D]/70 blur-2xl pointer-events-none"></div>
 
-                {{-- Image card --}}
                 <div id="hero-img" class="hero-img-wrap relative w-full max-w-lg cursor-none">
                     <div class="img-zoom rounded-3xl overflow-hidden border-[5px] border-white shadow-2xl shadow-[#1A8DA3]/20 relative z-10">
-                        <img
-                            src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80"
-                            alt="SDN Ciledug Barat"
-                            class="w-full h-80 md:h-96 object-cover"
-                        >
+                        <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80" alt="SDN Ciledug Barat" class="w-full h-80 md:h-96 object-cover">
                     </div>
 
-                    {{-- Floating accent card --}}
                     <div class="float-element absolute -bottom-5 -left-5 z-20 glass-card rounded-2xl px-5 py-3 shadow-xl border border-white/60">
                         <div class="flex items-center gap-3">
                             <div class="w-9 h-9 rounded-full bg-[#1A8DA3] flex items-center justify-center">
                                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138z"/>
                                 </svg>
                             </div>
                             <div>
@@ -263,7 +246,6 @@
                         </div>
                     </div>
 
-                    {{-- Top right badge --}}
                     <div class="float-element absolute -top-4 -right-4 z-20 rounded-2xl shadow-xl overflow-hidden" style="animation-delay:1s">
                         <div class="bg-white border border-gray-100 px-4 py-2.5 flex items-center gap-2.5">
                             <div class="w-1.5 h-8 rounded-full bg-gradient-to-b from-[#1A8DA3] to-[#c9e84f]"></div>
@@ -279,20 +261,17 @@
     </section>
 
     {{-- ===========================
-         SECTION 2 — PENGUMUMAN
+          SECTION 2 — PENGUMUMAN
     =========================== --}}
     <section class="py-20 px-6 md:px-12 lg:px-20 bg-white">
         <div class="max-w-7xl mx-auto">
-
-            {{-- Header --}}
             <div class="flex items-end justify-between mb-10" data-aos="fade-up">
                 <div>
                     <h2 class="font-headline text-2xl md:text-3xl font-bold text-gray-900 section-title-bar">
                         Pengumuman Terbaru
                     </h2>
                 </div>
-                <a href="{{ Route::has('pengumuman.index') ? route('pengumuman.index') : '#' }}"
-                   class="animated-underline flex items-center gap-1.5 text-[#1A8DA3] font-semibold text-sm hover:gap-2.5 transition-all duration-300">
+                <a href="{{ route('pengumuman.index') }}" class="animated-underline flex items-center gap-1.5 text-[#1A8DA3] font-semibold text-sm hover:gap-2.5 transition-all duration-300">
                     Lihat Semua
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -300,11 +279,8 @@
                 </a>
             </div>
 
-            {{-- Cards — data dinamis dari database via HomeController --}}
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
                 @php
-                // Map warna badge per kategori
                 $badgeColor = [
                     'Penting'  => 'bg-red-100 text-red-700',
                     'Akademik' => 'bg-yellow-100 text-yellow-700',
@@ -312,7 +288,6 @@
                     'Libur'    => 'bg-orange-100 text-orange-600',
                     'PPDB'     => 'bg-green-100 text-green-700',
                 ];
-                // Icon path per kategori
                 $badgeIcon = [
                     'Penting'  => 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z',
                     'Akademik' => 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
@@ -324,25 +299,19 @@
                 $defaultIcon  = 'M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9';
                 @endphp
 
-                @forelse($pengumumans as $i => $item)
+                {{-- LOOPING DATA PENGUMUMAN DINAMIS --}}
+                @forelse($pengumumans ?? [] as $i => $item)
                 @php
                     $cat   = $item->category ?? 'default';
                     $color = $badgeColor[$cat] ?? $defaultColor;
                     $icon  = $badgeIcon[$cat]  ?? $defaultIcon;
                     $isImportant = $item->is_important ?? false;
                 @endphp
-                <a
-                    href="{{ Route::has('pengumuman.show') ? route('pengumuman.show', $item->slug) : route('pengumuman.index') }}"
-                    class="card-stagger group relative flex flex-col bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover-glow hover:-translate-y-1.5 hover:border-[#1A8DA3]/40 transition-all duration-300"
-                    data-aos="fade-up"
-                    data-aos-delay="{{ $i * 80 }}"
-                >
-                    {{-- Important dot --}}
+                <a href="{{ route('pengumuman.show', $item->slug)    }}" class="card-stagger group relative flex flex-col bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover-glow hover:-translate-y-1.5 hover:border-[#1A8DA3]/40 transition-all duration-300" data-aos="fade-up" data-aos-delay="{{ $i * 80 }}">
                     @if($isImportant)
                     <span class="absolute top-4 right-4 w-2 h-2 rounded-full bg-red-400 animate-pulse"></span>
                     @endif
 
-                    {{-- Date --}}
                     <div class="flex items-center gap-2 text-[#1A8DA3] text-xs font-medium mb-3">
                         <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $icon }}"/>
@@ -350,31 +319,25 @@
                         {{ \Carbon\Carbon::parse($item->published_at)->locale('id')->isoFormat('D MMM YYYY') }}
                     </div>
 
-                    {{-- Title --}}
                     <h3 class="font-headline text-lg font-bold text-gray-900 mb-2 group-hover:text-[#1A8DA3] transition-colors duration-200 line-clamp-2">
                         {{ $item->title }}
                     </h3>
 
-                    {{-- Description --}}
                     <p class="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-3 flex-1">
                         {{ $item->description }}
                     </p>
 
-                    {{-- Badge --}}
                     <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full w-fit {{ $color }}">
                         {{ $item->category }}
                     </span>
 
-                    {{-- Hover arrow --}}
                     <div class="absolute bottom-5 right-5 w-7 h-7 rounded-full bg-[#1A8DA3]/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bg-[#1A8DA3]/20">
                         <svg class="w-3.5 h-3.5 text-[#1A8DA3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
                     </div>
                 </a>
-
                 @empty
-                {{-- Empty state bila belum ada pengumuman --}}
                 <div class="col-span-3 flex flex-col items-center justify-center py-16 text-center">
                     <div class="w-14 h-14 rounded-full bg-[#e0f6fa] flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-[#1A8DA3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -384,47 +347,43 @@
                     <p class="text-gray-400 text-sm">Belum ada pengumuman saat ini.</p>
                 </div>
                 @endforelse
-
             </div>
         </div>
     </section>
 
     {{-- ===========================
-         SECTION 3 — PROFIL SEKOLAH
+          SECTION 3 — PROFIL SEKOLAH & GURU SAMPLING
     =========================== --}}
     <section class="py-20 px-6 md:px-12 lg:px-20 bg-[#f8fffe]">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-            {{-- LEFT — Image Grid --}}
             <div class="relative" data-aos="fade-right" data-aos-duration="800">
                 <div class="grid grid-cols-2 gap-4">
-                    {{-- Main image --}}
                     <div class="img-zoom col-span-1 row-span-2 rounded-2xl overflow-hidden shadow-lg">
                         <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&q=80" alt="Kelas" class="w-full h-64 object-cover">
                     </div>
-                    {{-- Akreditasi card --}}
                     <div class="bg-[#FFF59D] rounded-2xl p-5 flex flex-col justify-center shadow-md border border-yellow-200">
                         <div class="font-headline text-5xl font-black text-gray-800">A</div>
                         <div class="text-xs text-gray-600 mt-1 font-medium">Akreditasi Sekolah</div>
                     </div>
-                    {{-- Second image --}}
-                    <div class="img-zoom rounded-2xl overflow-hidden shadow-md">
-                        <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=400&q=80" alt="Belajar" class="w-full h-28 object-cover">
+                    
+                    {{-- INTEGRASI FOTO GURU PERTAMA DINAMIS SEBAGAI SAMPEL PREVIEW --}}
+                    <div class="img-zoom rounded-2xl overflow-hidden shadow-md bg-white flex items-center justify-center">
+                        @if(isset($gurus) && $gurus->count() > 0)
+                            <img src="{{ $gurus->first()->foto_url }}" alt="Guru" class="w-full h-28 object-cover">
+                        @else
+                            <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=400&q=80" alt="Belajar" class="w-full h-28 object-cover">
+                        @endif
                     </div>
                 </div>
 
-                {{-- Stats card floating --}}
                 <div class="float-element absolute -bottom-6 -left-4 bg-[#1A8DA3] text-white rounded-2xl px-6 py-4 shadow-xl shadow-[#1A8DA3]/30 z-10">
                     <div class="font-headline text-3xl font-bold">20+</div>
                     <div class="text-xs mt-0.5 text-white/80">Ekstrakurikuler Unggulan</div>
                 </div>
-
-                {{-- Decorative ring --}}
                 <div class="absolute -top-6 -right-6 w-20 h-20 rounded-full border-4 border-[#1A8DA3]/20 pointer-events-none"></div>
                 <div class="absolute -top-3 -right-3 w-8 h-8 rounded-full border-2 border-[#FFF59D] pointer-events-none"></div>
             </div>
 
-            {{-- RIGHT — Content --}}
             <div class="space-y-7" data-aos="fade-left" data-aos-duration="800">
                 <h2 class="font-headline text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
                     Membentuk Generasi <span class="text-[#1A8DA3]">Cerdas Berkarakter</span>
@@ -433,7 +392,6 @@
                     SDN Ciledug Barat berkomitmen untuk menjadi institusi pendidikan yang tidak hanya unggul secara akademis, tetapi juga menanamkan nilai-nilai luhur dan kreativitas pada setiap siswa.
                 </p>
 
-                {{-- Visi Card --}}
                 <div class="group rounded-2xl border border-gray-100 bg-white p-5 shadow-sm hover:border-[#1A8DA3]/40 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-start gap-4">
                         <div class="w-10 h-10 rounded-full bg-[#e0f6fa] flex items-center justify-center flex-shrink-0 group-hover:bg-[#1A8DA3] transition-colors duration-300">
@@ -443,13 +401,12 @@
                             </svg>
                         </div>
                         <div>
-                            <h4 class="font-headline font-bold text-gray-800 mb-1">Visi Kami</h4>
+                            <div class="font-headline font-bold text-gray-800 mb-1">Visi Kami</div>
                             <p class="text-gray-500 text-sm leading-relaxed">Menjadi sekolah dasar unggulan yang menghasilkan lulusan berakhlak mulia, cerdas, kreatif, dan mandiri.</p>
                         </div>
                     </div>
                 </div>
 
-                {{-- Misi Card --}}
                 <div class="group rounded-2xl border border-gray-100 bg-white p-5 shadow-sm hover:border-[#1A8DA3]/40 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
                     <div class="flex items-start gap-4">
                         <div class="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center flex-shrink-0 group-hover:bg-[#FFF59D] transition-colors duration-300">
@@ -458,7 +415,7 @@
                             </svg>
                         </div>
                         <div>
-                            <h4 class="font-headline font-bold text-gray-800 mb-1">Misi Kami</h4>
+                            <div class="font-headline font-bold text-gray-800 mb-1">Misi Kami</div>
                             <p class="text-gray-500 text-sm leading-relaxed">Menyelenggarakan pendidikan berkualitas, mengembangkan bakat minat, dan membangun ekosistem sekolah yang menyenangkan.</p>
                         </div>
                     </div>
@@ -468,14 +425,10 @@
     </section>
 
     {{-- ===========================
-         SECTION 4 — KATEGORI ARTIKEL
-         (Ekstrakurikuler / Prestasi / Dokumentasi)
-         Data dikelola via admin panel → model Artikel
+          SECTION 4 — KATEGORI ARTIKEL / KEGIATAN & KALENDER AKADEMIK
     =========================== --}}
     <section id="program" class="py-20 px-6 md:px-12 lg:px-20 bg-white">
         <div class="max-w-7xl mx-auto">
-
-            {{-- Header --}}
             <div class="text-center mb-14" data-aos="fade-up">
                 <h2 class="font-headline text-3xl md:text-4xl font-bold text-gray-900 mb-3">
                     Jelajahi Kegiatan Kami
@@ -485,39 +438,33 @@
                 </p>
             </div>
 
-            {{-- 3 Kategori Artikel Cards --}}
+            {{-- 3 Menu Utama Kategori Kegiatan --}}
             @php
             $kategoriArtikel = [
                 [
                     'label'       => 'Ekstrakurikuler',
-                    'url'         => route('kegiatan.ekskul'),
+                    'url'         => route('kegiatan.kategori', ['kategori' => 'ekstrakurikuler']),
                     'deskripsi'   => 'Berbagai kegiatan pengembangan bakat dan minat siswa di luar jam pelajaran.',
-                    'count_label' => $artikelEkskul ?? 0,
                     'icon_bg'     => 'bg-[#e0f6fa]',
                     'icon_color'  => 'text-[#1A8DA3]',
-                    'badge_bg'    => 'bg-[#e0f6fa] text-[#1A8DA3]',
                     'glow'        => 'hover:shadow-[#1A8DA3]/15',
                     'icon_path'   => 'M13 10V3L4 14h7v7l9-11h-7z',
                 ],
                 [
                     'label'       => 'Prestasi',
-                    'url'         => route('kegiatan.prestasi'),
+                    'url'         => route('kegiatan.kategori', ['kategori' => 'prestasi']),
                     'deskripsi'   => 'Raihan dan penghargaan membanggakan yang ditorehkan siswa dan sekolah.',
-                    'count_label' => $artikelPrestasi ?? 0,
                     'icon_bg'     => 'bg-yellow-50',
                     'icon_color'  => 'text-yellow-600',
-                    'badge_bg'    => 'bg-yellow-100 text-yellow-700',
                     'glow'        => 'hover:shadow-yellow-100/60',
                     'icon_path'   => 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z',
                 ],
                 [
                     'label'       => 'Dokumentasi',
-                    'url'         => route('kegiatan.dokumentasi'),
+                    'url'         => route('kegiatan.kategori', ['kategori' => 'dokumentasi']),
                     'deskripsi'   => 'Kumpulan foto dan rekaman kegiatan sekolah dari berbagai momen spesial.',
-                    'count_label' => $artikelDokumentasi ?? 0,
                     'icon_bg'     => 'bg-purple-50',
                     'icon_color'  => 'text-purple-500',
-                    'badge_bg'    => 'bg-purple-100 text-purple-600',
                     'glow'        => 'hover:shadow-purple-100/60',
                     'icon_path'   => 'M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z',
                 ],
@@ -526,42 +473,25 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 @foreach($kategoriArtikel as $i => $kat)
-                <a
-                    href="{{ $kat['url'] }}"
-                    class="card-stagger group relative flex flex-col bg-white rounded-3xl border border-gray-100 p-7 shadow-sm
-                           hover:border-gray-200 hover:-translate-y-2 hover:shadow-xl {{ $kat['glow'] }}
-                           transition-all duration-300 cursor-pointer overflow-hidden"
-                    data-aos="fade-up"
-                    data-aos-delay="{{ $i * 100 }}"
-                >
-                    {{-- Decorative top-right blob --}}
+                <a href="{{ $kat['url'] }}" class="card-stagger group relative flex flex-col bg-white rounded-3xl border border-gray-100 p-7 shadow-sm hover:border-gray-200 hover:-translate-y-2 hover:shadow-xl {{ $kat['glow'] }} transition-all duration-300 cursor-pointer overflow-hidden" data-aos="fade-up" data-aos-delay="{{ $i * 100 }}">
                     <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full {{ $kat['icon_bg'] }} opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500 pointer-events-none"></div>
 
-                    {{-- Icon --}}
                     <div class="relative w-14 h-14 rounded-2xl {{ $kat['icon_bg'] }} flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-sm">
                         <svg class="w-6 h-6 {{ $kat['icon_color'] }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="{{ $kat['icon_path'] }}"/>
                         </svg>
                     </div>
 
-                    {{-- Label + badge artikel count --}}
                     <div class="flex items-center gap-2 mb-2">
                         <h3 class="font-headline font-bold text-gray-900 text-lg group-hover:text-[#1A8DA3] transition-colors duration-200">
                             {{ $kat['label'] }}
                         </h3>
-                        @if($kat['count_label'] > 0)
-                        <span class="text-xs font-semibold px-2 py-0.5 rounded-full {{ $kat['badge_bg'] }}">
-                            {{ $kat['count_label'] }} artikel
-                        </span>
-                        @endif
                     </div>
 
-                    {{-- Description --}}
                     <p class="text-gray-400 text-sm leading-relaxed flex-1">
                         {{ $kat['deskripsi'] }}
                     </p>
 
-                    {{-- CTA row --}}
                     <div class="flex items-center gap-1.5 mt-5 text-sm font-semibold text-[#1A8DA3] opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
                         Lihat Semua
                         <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -569,121 +499,97 @@
                         </svg>
                     </div>
 
-                    {{-- Bottom accent line --}}
                     <div class="absolute bottom-0 left-0 h-[3px] w-0 group-hover:w-full {{ $kat['icon_bg'] }} transition-all duration-400 rounded-b-3xl"></div>
                 </a>
                 @endforeach
             </div>
 
-            {{-- Preview artikel terbaru per kategori (3 kolom) --}}
-            {{-- Masing-masing kolom menampilkan 2 artikel terakhir dari tiap kategori --}}
-            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+            {{-- ── 🌟 INTEGRASI LIVE DATA KEDUA ── --}}
+            <div class="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-                {{-- Kolom Ekstrakurikuler --}}
-                <div data-aos="fade-up" data-aos-delay="0">
+                {{-- Kolom 1 & 2 Satuan: Berita / Kegiatan Terbaru --}}
+                <div class="lg:col-span-2 space-y-4" data-aos="fade-up" data-aos-delay="0">
                     <div class="flex items-center justify-between mb-4">
-                        <h4 class="font-headline font-bold text-gray-700 text-sm uppercase tracking-wider">Ekstrakurikuler</h4>
-                        <a href="{{ route('kegiatan.ekskul') }}" class="text-xs text-[#1A8DA3] font-semibold hover:underline">Lihat Semua →</a>
+                        <h4 class="font-headline font-bold text-gray-700 text-sm uppercase tracking-wider">Berita & Kegiatan Terbaru</h4>
+                        <a href="{{ route('kegiatan.kategori', ['kategori' => 'berita']) }}" class="text-xs text-[#1A8DA3] font-semibold hover:underline">
+                            Lihat Semua Berita →
+                        </a>
                     </div>
-                    <div class="space-y-3">
-                        @forelse($artikelEkskulPreview ?? [] as $artikel)
-                        <a href="{{ Route::has('artikel.show') ? route('artikel.show', $artikel->slug) : '#' }}"
-                           class="group flex items-start gap-3 p-3.5 rounded-2xl border border-gray-100 bg-white hover:border-[#1A8DA3]/30 hover:shadow-md hover:-translate-y-0.5 transition-all duration-250 block">
-                            @if($artikel->thumbnail)
-                            <img src="{{ asset('storage/'.$artikel->thumbnail) }}" alt="" class="w-12 h-12 rounded-xl object-cover flex-shrink-0">
-                            @else
-                            <div class="w-12 h-12 rounded-xl bg-[#e0f6fa] flex items-center justify-center flex-shrink-0">
-                                <svg class="w-5 h-5 text-[#1A8DA3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                                </svg>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        @forelse($kegiatans ?? [] as $artikel)
+                        <a href="/kegiatan/{{ \Illuminate\Support\Str::startsWith($artikel->slug, 'berita-') ? 'berita' : $artikel->kategori }}/{{ $artikel->slug }}" class="group flex flex-col bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-[#1A8DA3]/30 hover:shadow-md transition-all duration-250 block">
+                            <div class="img-zoom relative h-40 w-full overflow-hidden bg-slate-100">
+                                <img src="{{ $artikel->thumbnail }}" alt="" class="w-full h-full object-cover">
+                                
+                                {{-- FIX REWRITE VISUAL BADGE: SINKRON KATEGORI IKUT SLUG PREFIX --}}
+                                <span class="absolute top-3 left-3 px-2 py-0.5 text-[9px] font-bold text-white bg-[#1A8DA3] rounded-md uppercase tracking-wide shadow-sm">
+                                    @if($artikel->kategori == 'dokumentasi' && \Illuminate\Support\Str::startsWith($artikel->slug, 'berita-'))
+                                        Berita Sekolah
+                                    @elseif($artikel->kategori == 'ekstrakurikuler' || $artikel->kategori == 'ekskul')
+                                        Ekskul
+                                    @else
+                                        {{ $artikel->kategori == 'dokumentasi' ? 'Dokumentasi' : $artikel->kategori }}
+                                    @endif
+                                </span>
                             </div>
-                            @endif
-                            <div class="min-w-0">
-                                <p class="text-sm font-semibold text-gray-800 group-hover:text-[#1A8DA3] transition-colors duration-200 line-clamp-2 leading-snug">{{ $artikel->title }}</p>
-                                <p class="text-xs text-gray-400 mt-0.5">{{ \Carbon\Carbon::parse($artikel->published_at)->locale('id')->isoFormat('D MMM YYYY') }}</p>
+                            <div class="p-4 min-w-0 flex-1 flex flex-col justify-between">
+                                <p class="text-sm font-bold text-gray-800 group-hover:text-[#1A8DA3] transition-colors duration-200 line-clamp-2 leading-snug">{{ $artikel->title }}</p>
+                                <p class="text-[11px] text-gray-400 mt-2 flex items-center gap-1">
+                                    <span>🕒</span> {{ \Carbon\Carbon::parse($artikel->published_at)->locale('id')->isoFormat('D MMMM YYYY') }}
+                                </p>
                             </div>
                         </a>
                         @empty
-                        <div class="p-4 rounded-2xl border border-dashed border-gray-200 text-center">
-                            <p class="text-xs text-gray-300">Belum ada artikel</p>
+                        <div class="p-8 rounded-2xl border border-dashed border-gray-200 text-center col-span-2">
+                            <p class="text-xs text-gray-300">Belum ada kegiatan terbaru yang diisi.</p>
                         </div>
                         @endforelse
                     </div>
                 </div>
 
-                {{-- Kolom Prestasi --}}
-                <div data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex items-center justify-between mb-4">
-                        <h4 class="font-headline font-bold text-gray-700 text-sm uppercase tracking-wider">Prestasi</h4>
-                        <a href="{{ route('kegiatan.prestasi') }}" class="text-xs text-[#1A8DA3] font-semibold hover:underline">Lihat Semua →</a>
-                    </div>
-                    <div class="space-y-3">
-                        @forelse($artikelPrestasiPreview ?? [] as $artikel)
-                        <a href="{{ Route::has('artikel.show') ? route('artikel.show', $artikel->slug) : '#' }}"
-                           class="group flex items-start gap-3 p-3.5 rounded-2xl border border-gray-100 bg-white hover:border-yellow-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-250 block">
-                            @if($artikel->thumbnail)
-                            <img src="{{ asset('storage/'.$artikel->thumbnail) }}" alt="" class="w-12 h-12 rounded-xl object-cover flex-shrink-0">
-                            @else
-                            <div class="w-12 h-12 rounded-xl bg-yellow-50 flex items-center justify-center flex-shrink-0">
-                                <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                            </div>
-                            @endif
-                            <div class="min-w-0">
-                                <p class="text-sm font-semibold text-gray-800 group-hover:text-yellow-600 transition-colors duration-200 line-clamp-2 leading-snug">{{ $artikel->title }}</p>
-                                <p class="text-xs text-gray-400 mt-0.5">{{ \Carbon\Carbon::parse($artikel->published_at)->locale('id')->isoFormat('D MMM YYYY') }}</p>
-                            </div>
-                        </a>
-                        @empty
-                        <div class="p-4 rounded-2xl border border-dashed border-gray-200 text-center">
-                            <p class="text-xs text-gray-300">Belum ada artikel</p>
-                        </div>
-                        @endforelse
-                    </div>
-                </div>
-
-                {{-- Kolom Dokumentasi --}}
+                {{-- Kolom 3 Satuan: Kalender Agenda Sekolah --}}
                 <div data-aos="fade-up" data-aos-delay="200">
                     <div class="flex items-center justify-between mb-4">
-                        <h4 class="font-headline font-bold text-gray-700 text-sm uppercase tracking-wider">Dokumentasi</h4>
-                        <a href="{{ route('kegiatan.dokumentasi') }}" class="text-xs text-[#1A8DA3] font-semibold hover:underline">Lihat Semua →</a>
+                        <h4 class="font-headline font-bold text-gray-700 text-sm uppercase tracking-wider">📅 Agenda Sekolah Terdekat</h4>
+                        <a href="/akademik/kalender" class="text-xs text-[#1A8DA3] font-semibold hover:underline">Lihat Semua →</a>
                     </div>
+                    
                     <div class="space-y-3">
-                        @forelse($artikelDokumentasiPreview ?? [] as $artikel)
-                        <a href="{{ Route::has('artikel.show') ? route('artikel.show', $artikel->slug) : '#' }}"
-                           class="group flex items-start gap-3 p-3.5 rounded-2xl border border-gray-100 bg-white hover:border-purple-200 hover:shadow-md hover:-translate-y-0.5 transition-all duration-250 block">
-                            @if($artikel->thumbnail)
-                            <img src="{{ asset('storage/'.$artikel->thumbnail) }}" alt="" class="w-12 h-12 rounded-xl object-cover flex-shrink-0">
-                            @else
-                            <div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center flex-shrink-0">
-                                <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
+                        @forelse($agendas ?? [] as $agenda)
+                        <div class="flex items-center gap-3.5 p-3 rounded-2xl border border-gray-100 bg-white hover:border-[#1A8DA3]/20 hover:shadow-sm transition-all duration-200">
+                            {{-- Mini Kotak Kalender Tanggal --}}
+                            <div class="bg-[#1A8DA3]/10 text-[#1A8DA3] p-2.5 rounded-xl font-bold text-center min-w-[58px] flex-shrink-0">
+                                <span class="text-[9px] font-semibold block text-slate-500 uppercase leading-none mb-1">
+                                    {{ \Carbon\Carbon::parse($agenda->tanggal_mulai)->locale('id')->isoFormat('MMM') }}
+                                </span>
+                                <span class="text-base leading-none">
+                                    {{ \Carbon\Carbon::parse($agenda->tanggal_mulai)->format('d') }}
+                                </span>
                             </div>
-                            @endif
+                            {{-- Judul Agenda --}}
                             <div class="min-w-0">
-                                <p class="text-sm font-semibold text-gray-800 group-hover:text-purple-500 transition-colors duration-200 line-clamp-2 leading-snug">{{ $artikel->title }}</p>
-                                <p class="text-xs text-gray-400 mt-0.5">{{ \Carbon\Carbon::parse($artikel->published_at)->locale('id')->isoFormat('D MMM YYYY') }}</p>
+                                <h5 class="font-bold text-gray-800 text-xs truncate leading-tight">{{ $agenda->nama_kegiatan }}</h5>
+                                <p class="text-[10px] text-gray-400 mt-1 truncate">
+                                    {{ $agenda->keterangan ?? 'Agenda Resmi Sekolah' }}
+                                </p>
                             </div>
-                        </a>
+                        </div>
                         @empty
                         <div class="p-4 rounded-2xl border border-dashed border-gray-200 text-center">
-                            <p class="text-xs text-gray-300">Belum ada artikel</p>
+                            <p class="text-xs text-gray-300">Belum ada agenda akademik terjadwal.</p>
                         </div>
                         @endforelse
                     </div>
                 </div>
 
-            </div>{{-- end preview grid --}}
-
+            </div>
         </div>
     </section>
 
     {{-- AOS Library --}}
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Init AOS
         AOS.init({
             once: true,
             offset: 80,
@@ -691,14 +597,12 @@
             duration: 700,
         });
 
-        // Cursor glow follow
         const glow = document.getElementById('cursor-glow');
         document.addEventListener('mousemove', (e) => {
             glow.style.left = e.clientX + 'px';
             glow.style.top  = e.clientY + 'px';
         });
 
-        // Hero image tilt on mousemove
         const heroImg = document.getElementById('hero-img');
         if (heroImg) {
             heroImg.addEventListener('mousemove', (e) => {
@@ -709,12 +613,12 @@
                 const dy    = (e.clientY - cy) / rect.height;
                 heroImg.style.transform = `perspective(900px) rotateY(${dx * 8}deg) rotateX(${-dy * 6}deg)`;
             });
+            heroImg.style.transition = 'transform 0.1s ease-out';
             heroImg.addEventListener('mouseleave', () => {
                 heroImg.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg)';
             });
         }
 
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const target = document.querySelector(this.getAttribute('href'));
@@ -725,7 +629,6 @@
             });
         });
 
-        // Stagger card reveal on scroll
         const cards = document.querySelectorAll('.card-stagger');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -741,5 +644,4 @@
             observer.observe(card);
         });
     </script>
-
 </x-layout>
