@@ -2,67 +2,146 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Artikel;
 use Illuminate\Http\Request;
+use App\Models\Artikel;
+use App\Models\Ekskul;
+use Illuminate\Support\Str;
 
 class ArtikelController extends Controller
 {
-    // ── Home: kirim preview + count ke view home ──────────────────
-    // Panggil method ini dari HomeController atau route '/'
-    public static function dataForHome(): array
+    public function adminDashboard()
     {
-        $preview = fn(string $kat) => Artikel::published()->kategori($kat)->limit(2)->get();
-        $count   = fn(string $kat) => Artikel::published()->kategori($kat)->count();
-
-        return [
-            'artikelEkskulPreview'    => $preview('ekstrakurikuler'),
-            'artikelPrestasiPreview'  => $preview('prestasi'),
-            'artikelDokumentasiPreview' => $preview('dokumentasi'),
-            'artikelEkskul'           => $count('ekstrakurikuler'),
-            'artikelPrestasi'         => $count('prestasi'),
-            'artikelDokumentasi'      => $count('dokumentasi'),
-        ];
+        $artikels = Artikel::orderBy('published_at', 'desc')->get(); 
+        return view('admin.kegiatan.index', compact('artikels'));
     }
 
-    // ── Halaman daftar per kategori ───────────────────────────────
-    public function kategori(string $slug)
+    /**
+     * Menampilkan daftar artikel/kegiatan berdasarkan kategori di Halaman Publik.
+     */
+    public function kategori(string $kategori)
     {
-        $allowed = ['ekstrakurikuler', 'prestasi', 'dokumentasi'];
+        $kategoriClean = strtolower($kategori);
 
-        abort_unless(in_array($slug, $allowed), 404);
+        if ($kategoriClean == 'berita') {
+            // BERITA SEKOLAH: Ambil kategori 'dokumentasi' yang slug-nya berawalan 'berita-'
+            $artikels = Artikel::where('kategori', 'dokumentasi')
+                ->where('slug', 'like', 'berita-%')
+                ->orderBy('published_at', 'desc')
+                ->paginate(9);
 
-        $artikels = Artikel::published()
-            ->kategori($slug)
-            ->paginate(9)
-            ->withQueryString();
+            return view('kegiatan.index', compact('artikels', 'kategori'));
 
-        $labelMap = [
-            'ekstrakurikuler' => 'Ekstrakurikuler',
-            'prestasi'        => 'Prestasi',
-            'dokumentasi'     => 'Dokumentasi',
-        ];
+        } elseif ($kategoriClean == 'dokumentasi') {
+            // DOKUMENTASI MURNI: Ambil kategori 'dokumentasi' yang slug-nya bersih dari kata 'berita-'
+            $artikels = Artikel::where('kategori', 'dokumentasi')
+                ->where('slug', 'not like', 'berita-%')
+                ->orderBy('published_at', 'desc')
+                ->paginate(9);
 
-        return view('artikel.kategori', [
-            'artikels'      => $artikels,
-            'kategoriSlug'  => $slug,
-            'kategoriLabel' => $labelMap[$slug],
-        ]);
+            return view('kegiatan.index', compact('artikels', 'kategori'));
+
+        } elseif ($kategoriClean == 'ekstrakurikuler' || $kategoriClean == 'ekskul') {
+            // JALUR PINTAR EKSKUL: Tarik data dinamis dari tabel ekskul mandiri
+            $ekskuls = Ekskul::orderBy('nama_ekskul', 'asc')->paginate(9);
+            
+            return view('kegiatan.ekskul', compact('ekskuls', 'kategori'));
+
+        } else {
+            // Kategori lain (misal: prestasi) berjalan normal sesuai teks DB
+            $artikels = Artikel::where('kategori', $kategoriClean)
+                ->orderBy('published_at', 'desc')
+                ->paginate(9);
+
+            return view('kegiatan.index', compact('artikels', 'kategori'));
+        }
     }
 
-    // ── Halaman detail satu artikel ───────────────────────────────
-    public function show(string $slug)
+    public function show(string $kategori, string $slug)
     {
-        $artikel = Artikel::where('slug', $slug)
-            ->where('is_published', true)
+        $dbKategori = (strtolower($kategori) == 'berita') ? 'dokumentasi' : strtolower($kategori);
+
+        $artikel = Artikel::where('kategori', $dbKategori)
+            ->where('slug', $slug)
             ->firstOrFail();
 
-        // Artikel terkait (same kategori, exclude current)
-        $related = Artikel::published()
-            ->kategori($artikel->kategori)
-            ->where('id', '!=', $artikel->id)
-            ->limit(3)
-            ->get();
+        return view('kegiatan.show', compact('artikel'));
+    }
 
-        return view('artikel.show', compact('artikel', 'related'));
+    public function create()
+    {
+        return view('admin.kegiatan.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'kategori' => 'required|string',
+            'thumbnail' => 'nullable|url',
+            'body' => 'required|string',
+        ]);
+
+        $artikel = new Artikel();
+        $artikel->title = $request->title;
+        
+        if ($request->kategori == 'berita') {
+            $artikel->slug = 'berita-' . Str::slug($request->title);
+            $artikel->kategori = 'dokumentasi'; // Belokkan demi bypass constraint Supabase
+        } else {
+            $artikel->slug = Str::slug($request->title);
+            $artikel->kategori = $request->kategori;
+        }
+
+        $artikel->thumbnail = $request->thumbnail ?? 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=600'; 
+        $artikel->body = $request->body;
+        $artikel->published_at = now(); 
+        $artikel->save();
+
+        return redirect()->route('admin.dashboard')
+            ->with('success', 'Kegiatan baru berhasil dipublikasikan!');
+    }
+
+    public function edit(string $id)
+    {
+        $artikel = Artikel::findOrFail($id);
+        return view('admin.kegiatan.edit', compact('artikel'));
+    }
+
+    public function update(Request $request, string $id)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'kategori' => 'required|string',
+            'thumbnail' => 'nullable|url',
+            'body' => 'required|string',
+        ]);
+
+        $artikel = Artikel::findOrFail($id);
+        $artikel->title = $request->title;
+        
+        if ($request->kategori == 'berita') {
+            $cleanTitle = str_replace('berita-', '', Str::slug($request->title));
+            $artikel->slug = 'berita-' . $cleanTitle;
+            $artikel->kategori = 'dokumentasi';
+        } else {
+            $artikel->slug = Str::slug($request->title);
+            $artikel->kategori = $request->kategori;
+        }
+
+        $artikel->thumbnail = $request->thumbnail ?? 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=600';
+        $artikel->body = $request->body;
+        $artikel->save();
+
+        return redirect()->route('admin.dashboard')
+            ->with('success', 'Kegiatan/Artikel berhasil diperbarui!');
+    }
+
+    public function destroy(string $id)
+    {
+        $artikel = Artikel::findOrFail($id);
+        $artikel->delete();
+
+        return redirect()->route('admin.dashboard')
+            ->with('success', 'Kegiatan/Artikel berhasil dihapus permanen!');
     }
 }

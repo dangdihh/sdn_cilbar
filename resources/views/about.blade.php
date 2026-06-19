@@ -12,6 +12,7 @@
 
     <div class="bg-[#F8F9FA] min-h-screen font-body text-slate-700 antialiased overflow-x-hidden">
 
+        {{-- ── SECTION 1: HERO PROFIL SINGKAT ── --}}
         <section class="max-w-7xl mx-auto px-6 lg:px-8 pt-12 pb-16 lg:pt-20 lg:pb-20">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
@@ -40,7 +41,7 @@
             </div>
         </section>
 
-
+        {{-- ── SECTION 2: VISI & MISI ── --}}
         <section class="max-w-7xl mx-auto px-6 lg:px-8 py-12 space-y-8">
             <div class="text-center">
                 <h2 class="text-xl font-bold font-headline tracking-tight text-slate-900 border-b-2 border-[#1A8DA2] inline-block pb-2">
@@ -82,68 +83,46 @@
             </div>
         </section>
 
-
+        {{-- ── SECTION 3: STRUKTUR ORGANISASI (DINAMIS DARI DATABASE) ── --}}
         <section class="max-w-7xl mx-auto px-6 lg:px-8 py-12 space-y-10">
             <div class="text-center max-w-xl mx-auto space-y-2">
-                <h2 class="text-xl font-bold font-headline tracking-tight text-slate-900">
-                    Struktur Organisasi
-                </h2>
-                <p class="text-slate-400 text-xs font-normal">
-                    Sinergi manajemen sekolah profesional untuk menghasilkan ekosistem pendidikan yang transparan dan akuntabel.
-                </p>
+                <h2 class="text-xl font-bold font-headline tracking-tight text-slate-900">Struktur Organisasi</h2>
+                <p class="text-slate-400 text-xs font-normal">Manajemen inti pengambil kebijakan penjamin mutu operasional SDN Ciledug Barat.</p>
             </div>
 
             <div class="space-y-8 flex flex-col items-center">
-
-                <div class="bg-white border-2 border-[#1A8DA2] rounded-xl p-4 w-64 text-center shadow-sm hover:shadow-md transition-shadow relative group">
+                {{-- Top Pimpinan Utama --}}
+                @if($kepalaSekolah)
+                <div class="bg-white border-2 border-[#1A8DA2] rounded-xl p-4 w-64 text-center shadow-sm relative group">
                     <div class="w-12 h-12 rounded-full overflow-hidden mx-auto mb-2.5 border-2 border-slate-100">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=150" alt="Kepala Sekolah" class="w-full h-full object-cover">
+                        <img src="{{ $kepalaSekolah->foto_url ?? 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=150' }}" 
+                            alt="{{ $kepalaSekolah->nama }}" class="w-full h-full object-cover">
                     </div>
-                    <h4 class="text-xs font-bold text-slate-900 font-headline">Hj. Suti Gumiarti, M.Pd</h4>
-                    <span class="text-[10px] text-[#1A8DA2] font-semibold tracking-wide uppercase mt-0.5 block">Kepala Sekolah</span>
+                    <h4 class="text-xs font-bold text-slate-900 font-headline">{{ $kepalaSekolah->nama }}</h4>
+                    <span class="text-[10px] text-[#1A8DA3] font-semibold tracking-wide uppercase mt-0.5 block">{{ $kepalaSekolah->jabatan }}</span>
                 </div>
+                @endif
 
                 <div class="w-0.5 h-6 bg-slate-200"></div>
 
-                <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-6 w-full max-w-4xl">
-
-                    <div class="bg-white border border-slate-200/60 rounded-xl p-4 text-center shadow-sm hover:border-teal-200 transition-all group">
-                        <div class="w-10 h-10 rounded-full overflow-hidden mx-auto mb-2 border border-slate-100 group-hover:scale-105 transition-transform">
-                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=150" alt="Guru" class="w-full h-full object-cover">
+                {{-- Jajaran Kepala Unit Kerja --}}
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 w-full max-w-3xl">
+                    @foreach($jajaran as $item)
+                        <div class="bg-white border border-slate-200/60 rounded-xl p-4 text-center shadow-sm hover:border-teal-200 transition-all group">
+                            <div class="w-10 h-10 rounded-full overflow-hidden mx-auto mb-2 border border-slate-100">
+                                <img src="{{ $item->foto_url ?? 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150' }}" 
+                                    alt="{{ $item->nama }}" class="w-full h-full object-cover">
+                            </div>
+                            <h5 class="text-[11px] font-bold text-slate-900">{{ $item->nama }}</h5>
+                            <span class="text-[9px] text-[#1A8DA3] font-medium block mt-0.5">{{ $item->jabatan }}</span>
                         </div>
-                        <h5 class="text-[11px] font-bold text-slate-900">Bpk. Ahmad Subarjo</h5>
-                        <span class="text-[9px] text-slate-400 block mt-0.5">Komite Sekolah</span>
-                    </div>
-
-                    <div class="bg-white border border-slate-200/60 rounded-xl p-4 text-center shadow-sm hover:border-teal-200 transition-all group">
-                        <div class="w-10 h-10 rounded-full overflow-hidden mx-auto mb-2 border border-slate-100 group-hover:scale-105 transition-transform">
-                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=150" alt="Guru" class="w-full h-full object-cover">
-                        </div>
-                        <h5 class="text-[11px] font-bold text-slate-900">Ibu Siti Zubaidah</h5>
-                        <span class="text-[9px] text-slate-400 block mt-0.5">Wakil Kesiswaan</span>
-                    </div>
-
-                    <div class="bg-white border border-slate-200/60 rounded-xl p-4 text-center shadow-sm hover:border-teal-200 transition-all group">
-                        <div class="w-10 h-10 rounded-full overflow-hidden mx-auto mb-2 border border-slate-100 group-hover:scale-105 transition-transform">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150" alt="Guru" class="w-full h-full object-cover">
-                        </div>
-                        <h5 class="text-[11px] font-bold text-slate-900">Ibu Rina Marlina</h5>
-                        <span class="text-[9px] text-slate-400 block mt-0.5">Kurikulum</span>
-                    </div>
-
-                    <div class="bg-white border border-slate-200/60 rounded-xl p-4 text-center shadow-sm hover:border-teal-200 transition-all group">
-                        <div class="w-10 h-10 rounded-full overflow-hidden mx-auto mb-2 border border-slate-100 group-hover:scale-105 transition-transform">
-                            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=150" alt="Guru" class="w-full h-full object-cover">
-                        </div>
-                        <h5 class="text-[11px] font-bold text-slate-900">Bpk. Rizky Fauzi</h5>
-                        <span class="text-[9px] text-slate-400 block mt-0.5">Tata Usaha</span>
-                    </div>
-
+                    @endforeach
                 </div>
             </div>
         </section>
 
 
+        {{-- ── SECTION 4: FASILITAS SEKOLAH DINAMIS (BENTO LAYOUT SINKRON DATABASE) ── --}}
         <section class="bg-slate-200/40 py-16">
             <div class="max-w-7xl mx-auto px-6 lg:px-8 space-y-10">
                 <div class="flex items-center justify-between border-b border-slate-300/60 pb-4">
@@ -156,50 +135,49 @@
                     </span>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-
-                    <div class="md:col-span-7 relative h-72 md:h-96 rounded-2xl overflow-hidden shadow-sm border border-white group">
-                        <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=600" alt="Ruang Kelas" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-900/10 to-transparent flex flex-col justify-end p-5">
-                            <h4 class="text-white text-sm font-bold font-headline">Ruang Kelas Ber-AC</h4>
-                            <p class="text-slate-300/90 text-[10px] mt-0.5 font-normal">Dilengkapi smart proyektor untuk mendukung pembelajaran digital interaktif.</p>
-                        </div>
-                    </div>
-
-                    <div class="md:col-span-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-4">
-
-                        <div class="relative h-44 rounded-2xl overflow-hidden shadow-sm border border-white group">
-                            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=400" alt="Perpustakaan" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent flex flex-col justify-end p-4">
-                                <h4 class="text-white text-xs font-bold font-headline">Perpustakaan Nyaman</h4>
+                @if($daftarFasilitas->isNotEmpty())
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                        
+                        {{-- CARD UTAMA/PERTAMA (Besar - md:col-span-7) --}}
+                        @php $firstFasilitas = $daftarFasilitas->first(); @endphp
+                        <div class="md:col-span-7 relative h-72 md:h-96 rounded-2xl overflow-hidden shadow-sm border border-white group">
+                            <img src="{{ $firstFasilitas->foto ? asset('img/' . $firstFasilitas->foto) : 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=800' }}" 
+                                 alt="{{ $firstFasilitas->nama_fasilitas }}" 
+                                 class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent flex flex-col justify-end p-5">
+                                <h4 class="text-white text-sm font-bold font-headline">{{ $firstFasilitas->nama_fasilitas }}</h4>
+                                <p class="text-slate-300/90 text-[10px] mt-0.5 font-normal">{{ $firstFasilitas->deskripsi }}</p>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-4 sm:col-span-2 md:col-span-1">
-
-                            <div class="relative h-44 rounded-2xl overflow-hidden shadow-sm border border-white group">
-                                <img src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=300" alt="Lab" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500">
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent flex flex-col justify-end p-3">
-                                    <h4 class="text-white text-[11px] font-bold font-headline">Laboratorium Komputer</h4>
+                        {{-- CONTAINER UNTUK CARD KEDUA DAN SETERUSNYA (Kecil - md:col-span-5) --}}
+                        <div class="md:col-span-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-4">
+                            @foreach($daftarFasilitas->skip(1) as $f)
+                                <div class="relative h-44 rounded-2xl overflow-hidden shadow-sm border border-white group">
+                                    <img src="{{ $f->foto ? asset('img/' . $f->foto) : 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=600' }}" 
+                                         alt="{{ $f->nama_fasilitas }}" 
+                                         class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent flex flex-col justify-end p-4">
+                                        <h4 class="text-white text-xs font-bold font-headline">{{ $f->nama_fasilitas }}</h4>
+                                        <p class="text-slate-300/90 text-[9px] mt-0.5 font-normal line-clamp-1">{{ $f->deskripsi }}</p>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="relative h-44 rounded-2xl overflow-hidden shadow-sm border border-white group">
-                                <img src="https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?q=80&w=300" alt="Area Bermain" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500">
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent flex flex-col justify-end p-3">
-                                    <h4 class="text-white text-[11px] font-bold font-headline">Area Bermain & Olahraga</h4>
-                                </div>
-                            </div>
-
+                            @endforeach
                         </div>
 
                     </div>
-                </div>
+                @else
+                    {{-- Tampilan Fallback jika Tabel di Supabase Masih Kosong --}}
+                    <div class="text-center py-12 bg-white rounded-2xl border border-slate-200/40 text-slate-400 text-xs italic">
+                        Belum ada sarana fasilitas sekolah yang dipublikasikan ke database.
+                    </div>
+                @endif
 
             </div>
         </section>
 
 
+        {{-- ── SECTION 5: CALL TO ACTION PPDB ── --}}
         <section class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
             <div class="bg-gradient-to-r from-[#1A8DA2] to-[#126675] rounded-[2rem] p-8 sm:p-12 text-center text-white relative overflow-hidden shadow-md group">
                 <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/5 rounded-full blur-xl"></div>
@@ -216,7 +194,7 @@
                         Jangan lewatkan kesempatan emas bergabung dengan angkatan tahun ini. Kuota kelas terbatas untuk menjaga efektivitas belajar mengajar.
                     </p>
                     <div class="pt-2">
-                        <a href="#" class="inline-block px-6 py-3 bg-white text-[#1A8DA2] text-xs font-bold rounded-lg shadow-sm hover:bg-slate-50 transition-all duration-200 transform active:scale-95">
+                        <a href="{{ route('ppdb.formulir') }}" class="inline-block px-6 py-3 bg-white text-[#1A8DA2] text-xs font-bold rounded-lg shadow-sm hover:bg-slate-50 transition-all duration-200 transform active:scale-95">
                             Daftar Sekarang
                         </a>
                     </div>

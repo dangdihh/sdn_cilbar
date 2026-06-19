@@ -198,15 +198,25 @@
         </div>
     </div>
 
-    {{-- ── Copyright bar ── --}}
-    <div class="border-t border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p class="text-[12px] text-gray-400 text-center sm:text-left">
-                &copy; {{ date('Y') }} SDN Ciledug Barat. Hak cipta dilindungi undang-undang.
-            </p>
-            <p class="text-[12px] text-gray-400">
-                Dibuat dengan <span class="text-[#1A8DA3]" aria-label="cinta">♥</span> untuk pendidikan
-            </p>
+    {{-- ── Copyright bar & Hidden Portal Admin ── --}}
+    <div class="border-t border-gray-100 bg-gray-50/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-4">
+                <p class="text-[12px] text-gray-400 text-center sm:text-left">
+                    &copy; {{ date('Y') }} SDN Ciledug Barat. Hak cipta dilindungi undang-undang.
+                </p>
+                <p class="text-[12px] text-gray-300 hidden sm:block">|</p>
+                <p class="text-[12px] text-gray-400">
+                    Dibuat dengan <span class="text-[#1A8DA3]" aria-label="cinta">♥</span> untuk pendidikan
+                </p>
+            </div>
+
+            {{-- PORTAL LOGIN GURU (Kamuflase Samar & Elegan) --}}
+            <div>
+                <a href="{{ route('admin.dashboard') }}" class="text-[11px] text-gray-400/70 hover:text-[#1A8DA3] transition-colors duration-300 flex items-center gap-1 font-medium tracking-tight">
+                    <span>🔒</span> <span>Portal Internal</span>
+                </a>
+            </div>
         </div>
     </div>
 
