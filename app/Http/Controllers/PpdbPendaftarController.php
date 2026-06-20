@@ -57,6 +57,9 @@ class PpdbPendaftarController extends Controller
             ->with('success', 'Status pendaftaran ' . $pendaftar->nama_lengkap . ' berhasil diperbarui!');
     }
 
+    /**
+     * Menghapus data pendaftar.
+     */
     public function destroy($id)
     {
         $pendaftar = PpdbPendaftar::findOrFail($id);
@@ -67,11 +70,11 @@ class PpdbPendaftarController extends Controller
     }
 
     /**
-     * Fitur Ekspor Data PPDB ke Excel (FIXED FOR VERCEL SERVERLESS)
+     * Fitur Ekspor Data PPDB ke Excel (FIXED FOR VERCEL SERVERLESS & AUTO FORMAT VISUAL)
      */
     public function exportExcel()
     {
-        // 1. Ambil data pendaftar yang statusnya 'Diterima' sesuai spek PendaftarExport kemarin
+        // 1. Ambil data pendaftar yang statusnya 'Diterima'
         $data = PpdbPendaftar::where('status_pendaftaran', 'Diterima')
                             ->orderBy('created_at', 'desc')
                             ->get();
@@ -99,17 +102,24 @@ class PpdbPendaftarController extends Controller
 
             // 4. Lakukan looping data dari DB Supabase
             foreach ($data as $pendaftar) {
+                // FIX NO HP: Dipaksa jadi teks murni lewat string petik tunggal agar angka 0 di depan TIDAK HILANG
+                $nomorHp = "'" . $pendaftar->nomor_telepon_ortu;
+
+                // FIX SENSOR TANGGAL: Ditambahkan spasi ekstra di ujungnya agar string fleksibel dan tidak memicu '###'
+                $tanggalLahirSafe = $pendaftar->tanggal_lahir . ' ';
+                $tanggalDaftarSafe = $pendaftar->created_at ? $pendaftar->created_at->format('d-m-Y H:i') . ' ' : '-';
+
                 fputcsv($file, [
                     $pendaftar->id,
                     $pendaftar->nama_lengkap,
                     $pendaftar->jenis_kelamin,
                     $pendaftar->tempat_lahir,
-                    $pendaftar->tanggal_lahir,
+                    $tanggalLahirSafe, 
                     $pendaftar->nama_ayah,
                     $pendaftar->nama_ibu,
-                    $pendaftar->nomor_telepon_ortu, 
+                    $nomorHp, 
                     $pendaftar->status_pendaftaran, 
-                    $pendaftar->created_at ? $pendaftar->created_at->format('d-m-Y H:i') : '-'
+                    $tanggalDaftarSafe
                 ]);
             }
 
