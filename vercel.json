@@ -3,12 +3,9 @@
     "framework": null,
     "functions": {
         "api/index.php": {
-            "runtime": "vercel-php",
+            "runtime": "@vercel/php",
             "maxDuration": 60,
-            "memory": 1024,
-            "config": {
-                "phpVersion": "8.2"
-            }
+            "memory": 1024
         }
     },
     "routes": [
