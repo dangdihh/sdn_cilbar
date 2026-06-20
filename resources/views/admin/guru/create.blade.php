@@ -28,14 +28,14 @@
                            class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#1A8DA3] focus:ring-1 focus:ring-[#1A8DA3] transition-all">
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {{-- Jabatan --}}
-                    <div class="space-y-2">
-                        <label for="jabatan" class="text-sm font-bold text-slate-800 block">Jabatan / Tugas Mengajar</label>
-                        <input type="text" name="jabatan" id="jabatan" required placeholder="Contoh: Guru Kelas 3B / Staf TU" 
-                               class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#1A8DA3] focus:ring-1 focus:ring-[#1A8DA3] transition-all">
-                    </div>
+                {{-- Jabatan --}}
+                <div class="space-y-2">
+                    <label for="jabatan" class="text-sm font-bold text-slate-800 block">Jabatan / Tugas Mengajar</label>
+                    <input type="text" name="jabatan" id="jabatan" required placeholder="Contoh: Kepala Sekolah / Wakil Kepala Sekolah / Guru Kelas 3B" 
+                           class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#1A8DA3] focus:ring-1 focus:ring-[#1A8DA3] transition-all">
+                </div>
 
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {{-- Jenis Pegawai --}}
                     <div class="space-y-2">
                         <label for="jenis_pegawai" class="text-sm font-bold text-slate-800 block">Jenis Kepegawaian</label>
@@ -44,6 +44,17 @@
                             <option value="" disabled selected>-- Pilih Tipe --</option>
                             <option value="guru">Guru (Tenaga Pendidik)</option>
                             <option value="tendik">Tendik (Tenaga Kependidikan / Staf)</option>
+                        </select>
+                    </div>
+
+                    {{-- FIX: Input Dropdown Tingkat Struktur / Level Jabatan --}}
+                    <div class="space-y-2">
+                        <label for="level" class="text-sm font-bold text-slate-800 block">Tingkat Struktur Posisi</label>
+                        <select name="level" id="level" required 
+                                class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-[#1A8DA3] focus:ring-1 focus:ring-[#1A8DA3] bg-white transition-all">
+                            <option value="3" selected>Level 3 - Guru Biasa & Staf / Tendik</option>
+                            <option value="2">Level 2 - Wakil Kepala / Manajemen Inti (Kesiswaan/dll)</option>
+                            <option value="1">Level 1 - Kepala Sekolah (Pimpinan Utama)</option>
                         </select>
                     </div>
                 </div>

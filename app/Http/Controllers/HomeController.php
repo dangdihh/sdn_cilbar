@@ -7,6 +7,7 @@ use App\Models\Artikel;
 use App\Models\Guru;
 use App\Models\KalenderAkademik;
 use App\Models\Pengumuman;
+use App\Models\Fasilitas; // 👈 FIX: Import model Fasilitas biar gak error class not found
 
 class HomeController extends Controller
 {
@@ -62,5 +63,26 @@ class HomeController extends Controller
             'artikelPrestasiPreview', 
             'artikelDokumentasiPreview'
         ));
+    }
+
+    /**
+     * FIX: Menampilkan Halaman Tentang Kami dengan Struktur Berjenjang (Level 1, 2, dan 3)
+     */
+    public function tentang()
+    {
+        // 1. Ambil Pimpinan Utama (Level 1)
+        $kepalaSekolah = Guru::where('level', 1)->first();
+
+        // 2. Ambil Jajaran Wakil & Kaur Manajemen Inti (Level 2)
+        $wakilDanKaur = Guru::where('level', 2)->orderBy('nama', 'asc')->get();
+
+        // 3. Ambil Jajaran Guru Kelas, Mapel & Staff/Tendik (Level 3)
+        $guruDanStaff = Guru::where('level', 3)->orderBy('nama', 'asc')->get();
+
+        // 4. Ambil Daftar Fasilitas Sekolah untuk ditaruh di Bento Grid bawah
+        $daftarFasilitas = Fasilitas::latest()->get();
+
+        // 5. Lempar semua variabel ke view about.blade.php
+        return view('about', compact('kepalaSekolah', 'wakilDanKaur', 'guruDanStaff', 'daftarFasilitas'));
     }
 }

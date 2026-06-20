@@ -83,44 +83,59 @@
             </div>
         </section>
 
-        {{-- ── SECTION 3: STRUKTUR ORGANISASI (DINAMIS DARI DATABASE) ── --}}
-        <section class="max-w-7xl mx-auto px-6 lg:px-8 py-12 space-y-10">
+        {{-- ── SECTION 3: STRUKTUR ORGANISASI (FIXED: DINAMIS BERJENJANG PIRAMIDA) ── --}}
+        <section class="max-w-7xl mx-auto px-6 lg:px-8 py-12 space-y-12">
             <div class="text-center max-w-xl mx-auto space-y-2">
                 <h2 class="text-xl font-bold font-headline tracking-tight text-slate-900">Struktur Organisasi</h2>
                 <p class="text-slate-400 text-xs font-normal">Manajemen inti pengambil kebijakan penjamin mutu operasional SDN Ciledug Barat.</p>
             </div>
 
             <div class="space-y-8 flex flex-col items-center">
-                {{-- Top Pimpinan Utama --}}
+                {{-- [LEVEL 1]: Pimpinan Utama (Kepala Sekolah) --}}
                 @if($kepalaSekolah)
                 <div class="bg-white border-2 border-[#1A8DA2] rounded-xl p-4 w-64 text-center shadow-sm relative group">
                     <div class="w-12 h-12 rounded-full overflow-hidden mx-auto mb-2.5 border-2 border-slate-100">
-                        <img src="{{ $kepalaSekolah->foto_url ?? 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=150' }}" 
-                            alt="{{ $kepalaSekolah->nama }}" class="w-full h-full object-cover">
+                        <img src="{{ $kepalaSekolah->foto_url }}" 
+                             alt="{{ $kepalaSekolah->nama }}" class="w-full h-full object-cover">
                     </div>
                     <h4 class="text-xs font-bold text-slate-900 font-headline">{{ $kepalaSekolah->nama }}</h4>
                     <span class="text-[10px] text-[#1A8DA3] font-semibold tracking-wide uppercase mt-0.5 block">{{ $kepalaSekolah->jabatan }}</span>
+                    @if($kepalaSekolah->nip)
+                        <span class="text-[9px] text-slate-400 block mt-0.5">NIP: {{ $kepalaSekolah->nip }}</span>
+                    @endif
                 </div>
                 @endif
 
-                <div class="w-0.5 h-6 bg-slate-200"></div>
+                {{-- Garis Hubung 1 ke 2 --}}
+                @if($wakilDanKaur->isNotEmpty())
+                    <div class="w-0.5 h-6 bg-slate-200"></div>
+                @endif
 
-                {{-- Jajaran Kepala Unit Kerja --}}
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 w-full max-w-3xl">
-                    @foreach($jajaran as $item)
-                        <div class="bg-white border border-slate-200/60 rounded-xl p-4 text-center shadow-sm hover:border-teal-200 transition-all group">
-                            <div class="w-10 h-10 rounded-full overflow-hidden mx-auto mb-2 border border-slate-100">
-                                <img src="{{ $item->foto_url ?? 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150' }}" 
-                                    alt="{{ $item->nama }}" class="w-full h-full object-cover">
+                {{-- [LEVEL 2]: Jajaran Wakil & Kepala Urusan Manajemen Inti --}}
+                <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-3xl justify-center">
+                    @foreach($wakilDanKaur as $item)
+                        <div class="bg-white border-2 border-teal-500/20 rounded-xl p-4 text-center shadow-sm hover:border-[#1A8DA2] transition-all group">
+                            <div class="w-11 h-11 rounded-full overflow-hidden mx-auto mb-2 border border-slate-100">
+                                <img src="{{ $item->foto_url }}" 
+                                     alt="{{ $item->nama }}" class="w-full h-full object-cover">
                             </div>
-                            <h5 class="text-[11px] font-bold text-slate-900">{{ $item->nama }}</h5>
-                            <span class="text-[9px] text-[#1A8DA3] font-medium block mt-0.5">{{ $item->jabatan }}</span>
+                            <h5 class="text-[11px] font-bold text-slate-900 font-headline">{{ $item->nama }}</h5>
+                            <span class="text-[9px] text-[#1A8DA3] font-semibold block mt-0.5 uppercase tracking-wider">{{ $item->jabatan }}</span>
+                            @if($item->nip)
+                                <span class="text-[8px] text-slate-400 block mt-0.5">NIP: {{ $item->nip }}</span>
+                            @endif
                         </div>
                     @endforeach
                 </div>
+                {{-- Tambahan Tombol Cantik ke Halaman Direktori Lengkap Guru --}}
+                <div class="pt-6 text-center">
+                    <a href="{{ route('akademik.pendidik') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-100 hover:bg-[#E0F2F1] text-slate-700 hover:text-[#1A8DA2] text-xs font-bold rounded-xl transition-all duration-200">
+                        <span>Lihat Seluruh Tenaga Pendidik & Staf</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                </div>
             </div>
         </section>
-
 
         {{-- ── SECTION 4: FASILITAS SEKOLAH DINAMIS (BENTO LAYOUT SINKRON DATABASE) ── --}}
         <section class="bg-slate-200/40 py-16">
@@ -141,7 +156,7 @@
                         {{-- CARD UTAMA/PERTAMA (Besar - md:col-span-7) --}}
                         @php $firstFasilitas = $daftarFasilitas->first(); @endphp
                         <div class="md:col-span-7 relative h-72 md:h-96 rounded-2xl overflow-hidden shadow-sm border border-white group">
-                            <img src="{{ $firstFasilitas->foto ? asset('img/' . $firstFasilitas->foto) : 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=800' }}" 
+                            <img src="{{ $firstFasilitas->foto ?? 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=800' }}" 
                                  alt="{{ $firstFasilitas->nama_fasilitas }}" 
                                  class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent flex flex-col justify-end p-5">
@@ -154,7 +169,7 @@
                         <div class="md:col-span-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-4">
                             @foreach($daftarFasilitas->skip(1) as $f)
                                 <div class="relative h-44 rounded-2xl overflow-hidden shadow-sm border border-white group">
-                                    <img src="{{ $f->foto ? asset('img/' . $f->foto) : 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=600' }}" 
+                                    <img src="{{ $f->foto ?? 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=600' }}" 
                                          alt="{{ $f->nama_fasilitas }}" 
                                          class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500">
                                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent flex flex-col justify-end p-4">
@@ -175,7 +190,6 @@
 
             </div>
         </section>
-
 
         {{-- ── SECTION 5: CALL TO ACTION PPDB ── --}}
         <section class="max-w-7xl mx-auto px-6 lg:px-8 py-16">

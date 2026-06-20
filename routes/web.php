@@ -23,18 +23,8 @@ use App\Models\Guru;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// 1. Profil Sekolah
-Route::get('/tentang', function () {
-    $daftarFasilitas = Fasilitas::all();
-    
-    // Ambil pimpinan utama (Kepala Sekolah)
-    $kepalaSekolah = Guru::where('jabatan', 'Kepala Sekolah')->first();
-    
-    // Ambil jajaran kepala bidang (Kurikulum, Kesiswaan, TU)
-    $jajaran = Guru::whereIn('jabatan', ['Kepala Bidang Kurikulum', 'Kepala Bidang Kesiswaan', 'Kepala Tata Usaha'])->get();
-    
-    return view('about', compact('daftarFasilitas', 'kepalaSekolah', 'jajaran'));
-})->name('tentang');
+
+Route::get('/tentang', [App\Http\Controllers\HomeController::class, 'tentang'])->name('tentang');
 
 // 2. Academic / Akademik
 Route::prefix('akademik')->group(function () {

@@ -10,17 +10,28 @@ use App\Models\Kurikulum;
 class AcademicController extends Controller
 {
     /**
-     * Menampilkan Halaman Direktori Guru & Tenaga Pendidik untuk Publik.
+     * Menampilkan Halaman Direktori Guru & Tenaga Pendidik untuk Publik (LENGKAP SEMUA LEVEL).
      */
     public function pendidik()
     {
-        // Ambil data guru, kelompokkan biar rapi saat ditampilkan di view
-        $gurus = Guru::where('jenis_pegawai', 'guru')->orderBy('nama', 'asc')->get();
-        $tendiks = Guru::where('jenis_pegawai', 'tendik')->orderBy('nama', 'asc')->get();
+        // Ambil SEMUA data personil guru (Level 1, 2, dan 3) lalu urutkan dari jabatan tertinggi (level terkecil) baru nama
+        $gurus = Guru::where('jenis_pegawai', 'guru')
+            ->orderBy('level', 'asc')
+            ->orderBy('nama', 'asc')
+            ->get();
+
+        // Ambil semua tenaga kependidikan/staf tata usaha
+        $tendiks = Guru::where('jenis_pegawai', 'tendik')
+            ->orderBy('level', 'asc')
+            ->orderBy('nama', 'asc')
+            ->get();
 
         return view('akademik.pendidik', compact('gurus', 'tendiks'));
     }
 
+    /**
+     * Menampilkan Halaman Kalender Akademik Sekolah.
+     */
     public function kalender()
     {
         // 1. Ambil agenda yang akan datang (tanggal mulai dari hari ini ke depan)
@@ -37,6 +48,9 @@ class AcademicController extends Controller
         return view('akademik.kalender', compact('agendaMendatang', 'agendaLampau'));
     }
 
+    /**
+     * Menampilkan Halaman Kurikulum / Mata Pelajaran Sekolah.
+     */
     public function kurikulum()
     {
         // Ambil semua data kurikulum/mapel terbaru
