@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PpdbPendaftar;
-use App\Exports\PendaftarExport;
-use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class PpdbPendaftarController extends Controller
 {
@@ -57,6 +56,7 @@ class PpdbPendaftarController extends Controller
         return redirect()->route('admin.ppdb.index')
             ->with('success', 'Status pendaftaran ' . $pendaftar->nama_lengkap . ' berhasil diperbarui!');
     }
+
     public function destroy($id)
     {
         $pendaftar = PpdbPendaftar::findOrFail($id);
@@ -67,10 +67,62 @@ class PpdbPendaftarController extends Controller
     }
 
     /**
-     * Fitur Ekspor Data PPDB ke Excel.
+     * Fitur Ekspor Data PPDB ke Excel (FIXED FOR VERCEL SERVERLESS)
      */
     public function exportExcel()
     {
-        return Excel::download(new PendaftarExport, 'Data_Pendaftar_PPDB_2026.xlsx');
+        // 1. Ambil data pendaftar yang statusnya 'Diterima' sesuai spek PendaftarExport kemarin
+        $data = PpdbPendaftar::where('status_pendaftaran', 'Diterima')
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+
+        // 2. Alirkan data langsung sebagai stream output biner teks biasa
+        $response = new StreamedResponse(function() use ($data) {
+            $file = fopen('php://output', 'w');
+            
+            // Trik khusus agar Microsoft Excel langsung otomatis memisahkan kolom dengan koma
+            fputs($file, "sep=,\n"); 
+
+            // 3. Daftarkan Headings Kolom Excel-nya
+            fputcsv($file, [
+                'ID',
+                'Nama Lengkap Siswa',
+                'Jenis Kelamin',
+                'Tempat Lahir',
+                'Tanggal Lahir',
+                'Nama Ayah',
+                'Nama Ibu',
+                'No. HP / WhatsApp',
+                'Status',
+                'Tanggal Daftar'
+            ]);
+
+            // 4. Lakukan looping data dari DB Supabase
+            foreach ($data as $pendaftar) {
+                fputcsv($file, [
+                    $pendaftar->id,
+                    $pendaftar->nama_lengkap,
+                    $pendaftar->jenis_kelamin,
+                    $pendaftar->tempat_lahir,
+                    $pendaftar->tanggal_lahir,
+                    $pendaftar->nama_ayah,
+                    $pendaftar->nama_ibu,
+                    $pendaftar->nomor_telepon_ortu, 
+                    $pendaftar->status_pendaftaran, 
+                    $pendaftar->created_at ? $pendaftar->created_at->format('d-m-Y H:i') : '-'
+                ]);
+            }
+
+            fclose($file);
+        });
+
+        // 5. Setup Header HTTP untuk memicu file download berformat Excel (.xls) di komputer user
+        $namaFile = 'Data_Pendaftar_PPDB_Diterima_' . date('d-m-Y') . '.xls';
+        
+        $response->headers->set('Content-Type', 'application/vnd.ms-excel');
+        $response->headers->set('Content-Disposition', 'attachment; filename="' . $namaFile . '"');
+        $response->headers->set('Cache-Control', 'max-age=0');
+
+        return $response;
     }
 }
