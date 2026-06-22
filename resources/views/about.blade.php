@@ -34,7 +34,7 @@
 
                 <div class="lg:col-span-7">
                     <div class="w-full aspect-[16/10] rounded-[2rem] overflow-hidden border-4 border-white shadow-md transform hover:scale-[1.01] transition-transform duration-300">
-                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=800" alt="Gedung SDN Ciledug Barat" class="w-full h-full object-cover">
+                        <img src="https://oxpfyxpdfitdzsnftngj.supabase.co/storage/v1/object/public/fotocilbar/SnapInsta.to_657297985_18125648722579863_1751840166740170025_n_result.webp" alt="Gedung SDN Ciledug Barat" class="w-full h-full object-cover">
                     </div>
                 </div>
 
