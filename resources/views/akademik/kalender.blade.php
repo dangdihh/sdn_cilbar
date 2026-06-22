@@ -38,7 +38,7 @@
     {{-- Main Content --}}
     <section class="py-12 px-6 md:px-12 lg:px-20 bg-white">
         <div class="max-w-4xl mx-auto">
-            
+
             {{-- SEKSI 1: AGENDA MENDATANG --}}
             <div class="mb-16">
                 <div class="flex items-center gap-3 mb-8" data-aos="fade-right">
@@ -78,11 +78,15 @@
                                         </span>
                                     @endif
                                 </div>
+
+                                {{-- FIX SINKRONISASI SUPABASE: nama_kegiatan --}}
                                 <h3 class="font-bold text-gray-800 text-base mt-2 group-hover:text-[#1A8DA3] transition-colors duration-200">
-                                    {{ $agenda->judul }}
+                                    {{ $agenda->nama_kegiatan }}
                                 </h3>
-                                @if($agenda->deskripsi)
-                                    <p class="text-gray-500 text-sm mt-1 leading-relaxed">{{ $agenda->deskripsi }}</p>
+
+                                {{-- FIX SINKRONISASI SUPABASE: keterangan --}}
+                                @if($agenda->keterangan)
+                                    <p class="text-gray-500 text-sm mt-1 leading-relaxed">{{ $agenda->keterangan }}</p>
                                 @endif
                             </div>
                         </div>
@@ -94,7 +98,7 @@
                 </div>
             </div>
 
-            {{-- SEKSI 2: ARSIP AGENDA LAMPAU --}}
+            {{-- SEKSI 2: ARSIP AGENDA LAMPAU (SELESAI) --}}
             <div>
                 <div class="flex items-center gap-3 mb-6" data-aos="fade-right">
                     <div class="w-10 h-10 rounded-2xl bg-gray-100 flex items-center justify-center text-gray-500">
@@ -113,7 +117,7 @@
                         <div class="relative flex flex-col sm:flex-row items-start gap-3 p-4 rounded-2xl border border-gray-50 bg-gray-50/50 opacity-75 hover:opacity-100 transition-opacity duration-200" data-aos="fade-up">
                             {{-- Penanda Garis --}}
                             <div class="absolute -left-[23px] top-6 w-3 h-3 rounded-full bg-gray-300 border-2 border-white"></div>
-                            
+
                             <div class="min-w-[120px] flex-shrink-0">
                                 <span class="text-xs font-mono font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
                                     {{ \Carbon\Carbon::parse($agenda->tanggal_mulai)->locale('id')->isoFormat('D MMM YYYY') }}
@@ -121,11 +125,14 @@
                             </div>
 
                             <div class="flex-1">
+                                {{-- FIX SINKRONISASI ARSIP: nama_kegiatan --}}
                                 <h4 class="text-sm font-semibold text-gray-700 line-through decoration-gray-300">
-                                    {{ $agenda->judul }}
+                                    {{ $agenda->nama_kegiatan }}
                                 </h4>
-                                @if($agenda->deskripsi)
-                                    <p class="text-xs text-gray-400 mt-0.5 max-w-xl">{{ $agenda->deskripsi }}</p>
+
+                                {{-- FIX SINKRONISASI ARSIP: keterangan --}}
+                                @if($agenda->keterangan)
+                                    <p class="text-xs text-gray-400 mt-0.5 max-w-xl">{{ $agenda->keterangan }}</p>
                                 @endif
                             </div>
                         </div>

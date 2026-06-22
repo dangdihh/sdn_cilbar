@@ -229,7 +229,7 @@
 
                 <div id="hero-img" class="hero-img-wrap relative w-full max-w-lg cursor-none">
                     <div class="img-zoom rounded-3xl overflow-hidden border-[5px] border-white shadow-2xl shadow-[#1A8DA3]/20 relative z-10">
-                        <img src="https://images.unplash.com/photo-1580582932707-520aed937b7b?w=800&q=80" alt="SDN Ciledug Barat" class="w-full h-80 md:h-96 object-cover">
+                        <img src="https://oxpfyxpdfitdzsnftngj.supabase.co/storage/v1/object/public/fotocilbar/WhatsApp%20Image%202026-06-05%20at%2019.46.41_4032_2268.webp" alt="SDN Ciledug Barat" class="w-full h-80 md:h-96 object-cover">
                     </div>
 
                     <div class="float-element absolute -bottom-5 -left-5 z-20 glass-card rounded-2xl px-5 py-3 shadow-xl border border-white/60">
@@ -361,21 +361,20 @@
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="relative" data-aos="fade-right" data-aos-duration="800">
                 <div class="grid grid-cols-2 gap-4">
+                    {{-- ── FOTO 1: FOTO KELAS STATIS ── --}}
                     <div class="img-zoom col-span-1 row-span-2 rounded-2xl overflow-hidden shadow-lg">
-                        <img src="https://oxpfyxpdfitdzsnftngj.supabase.co/storage/v1/object/public/fotocilbar/Foto%204x6.jpg" alt="Kelas" class="w-full h-64 object-cover">
+                        <img src="https://oxpfyxpdfitdzsnftngj.supabase.co/storage/v1/object/public/fotocilbar/WhatsApp%20Image%202026-06-05%20at%2019.46.44%20(1)_4032_2268.webp" alt="Kelas" class="w-full h-64 object-cover">
                     </div>
+
+                    {{-- KOTAK AKREDITASI (TETAP) --}}
                     <div class="bg-[#FFF59D] rounded-2xl p-5 flex flex-col justify-center shadow-md border border-yellow-200">
                         <div class="font-headline text-5xl font-black text-gray-800">A</div>
                         <div class="text-xs text-gray-600 mt-1 font-medium">Akreditasi Sekolah</div>
                     </div>
 
-                    {{-- INTEGRASI FOTO GURU PERTAMA DINAMIS SEBAGAI SAMPEL PREVIEW --}}
+                    {{-- ── FOTO 2: FOTO PREVIEW GURU STATIS (SUDAH TIDAK DARI DATABASE) ── --}}
                     <div class="img-zoom rounded-2xl overflow-hidden shadow-md bg-white flex items-center justify-center">
-                        @if(isset($gurus) && $gurus->count() > 0)
-                            <img src="{{ $gurus->first()->foto_url }}" alt="Guru" class="w-full h-28 object-cover">
-                        @else
-                            <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=400&q=80" alt="Belajar" class="w-full h-28 object-cover">
-                        @endif
+                        <img src="https://oxpfyxpdfitdzsnftngj.supabase.co/storage/v1/object/public/fotocilbar/WhatsApp%20Image%202026-06-05%20at%2019.46.45%20(2)_4032_2268.webp" alt="Guru" class="w-full h-28 object-cover">
                     </div>
                 </div>
 
@@ -441,76 +440,92 @@
                 </p>
             </div>
 
-            {{-- 3 Menu Utama Kategori Kegiatan --}}
+            {{-- 3 Menu Utama Kategori Kegiatan - FULL PHOTO BACKGROUND BALANCE SYSTEM --}}
             @php
             $kategoriArtikel = [
                 [
                     'label'       => 'Ekstrakurikuler',
                     'url'         => route('kegiatan.kategori', ['kategori' => 'ekstrakurikuler']),
                     'deskripsi'   => 'Berbagai kegiatan pengembangan bakat dan minat siswa di luar jam pelajaran.',
-                    'icon_bg'     => 'bg-[#e0f6fa]',
+                    'icon_bg'     => 'bg-[#e0f6fa]/20 backdrop-blur-md',
                     'icon_color'  => 'text-[#1A8DA3]',
-                    'glow'        => 'hover:shadow-[#1A8DA3]/15',
+                    'glow'        => 'hover:shadow-[#1A8DA3]/25',
                     'icon_path'   => 'M13 10V3L4 14h7v7l9-11h-7z',
+                    'bg_image'    => 'images/ekskul.jpg',
                 ],
                 [
                     'label'       => 'Prestasi',
                     'url'         => route('kegiatan.kategori', ['kategori' => 'prestasi']),
                     'deskripsi'   => 'Raihan dan penghargaan membanggakan yang ditorehkan siswa dan sekolah.',
-                    'icon_bg'     => 'bg-yellow-50',
-                    'icon_color'  => 'text-yellow-600',
-                    'glow'        => 'hover:shadow-yellow-100/60',
+                    'icon_bg'     => 'bg-yellow-500/20 backdrop-blur-md',
+                    'icon_color'  => 'text-yellow-300',
+                    'glow'        => 'hover:shadow-yellow-500/25',
                     'icon_path'   => 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z',
+                    'bg_image'    => 'images/prestasi.jpg',
                 ],
                 [
                     'label'       => 'Dokumentasi',
                     'url'         => route('kegiatan.kategori', ['kategori' => 'dokumentasi']),
                     'deskripsi'   => 'Kumpulan foto dan rekaman kegiatan sekolah dari berbagai momen spesial.',
-                    'icon_bg'     => 'bg-purple-50',
-                    'icon_color'  => 'text-purple-500',
-                    'glow'        => 'hover:shadow-purple-100/60',
+                    'icon_bg'     => 'bg-purple-500/20 backdrop-blur-md',
+                    'icon_color'  => 'text-purple-300',
+                    'glow'        => 'hover:shadow-purple-500/25',
                     'icon_path'   => 'M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M15 13a3 3 0 11-6 0 3 3 0 016 0z',
+                    'bg_image'    => 'https://oxpfyxpdfitdzsnftngj.supabase.co/storage/v1/object/public/fotocilbar/WhatsApp%20Image%202026-06-05%20at%2019.46.46%20(1)_4032_2268.webp',
                 ],
             ];
             @endphp
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 @foreach($kategoriArtikel as $i => $kat)
-                <a href="{{ $kat['url'] }}" class="card-stagger group relative flex flex-col bg-white rounded-3xl border border-gray-100 p-7 shadow-sm hover:border-gray-200 hover:-translate-y-2 hover:shadow-xl {{ $kat['glow'] }} transition-all duration-300 cursor-pointer overflow-hidden" data-aos="fade-up" data-aos-delay="{{ $i * 100 }}">
-                    <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full {{ $kat['icon_bg'] }} opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500 pointer-events-none"></div>
+                <a href="{{ $kat['url'] }}" class="card-stagger group relative flex flex-col rounded-3xl p-7 shadow-sm hover:-translate-y-1.5 hover:shadow-xl {{ $kat['glow'] }} transition-all duration-300 cursor-pointer overflow-hidden border border-gray-100" data-aos="fade-up" data-aos-delay="{{ $i * 100 }}">
 
-                    <div class="relative w-14 h-14 rounded-2xl {{ $kat['icon_bg'] }} flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-sm">
-                        <svg class="w-6 h-6 {{ $kat['icon_color'] }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="{{ $kat['icon_path'] }}"/>
-                        </svg>
+                    {{-- ── LAYER BACKGROUND FOTO & DYNAMIC OVERLAY ── --}}
+                    <div class="absolute inset-0 z-0 pointer-events-none">
+                        <img src="{{ asset($kat['bg_image']) }}" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        {{-- Saat normal: bg-slate-900/40 (tidak terlalu gelap, balance). Saat di-hover: group-hover:bg-slate-950/75 (makin gelap agar tulisan makin keluar) --}}
+                        <div class="absolute inset-0 bg-slate-900/45 group-hover:bg-slate-950/75 transition-colors duration-300"></div>
                     </div>
 
-                    <div class="flex items-center gap-2 mb-2">
-                        <h3 class="font-headline font-bold text-gray-900 text-lg group-hover:text-[#1A8DA3] transition-colors duration-200">
-                            {{ $kat['label'] }}
-                        </h3>
+                    {{-- Efek Lingkaran Kanan Atas dibuat menyatu transparan --}}
+                    <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full {{ $kat['icon_bg'] }} opacity-20 group-hover:opacity-40 group-hover:scale-125 transition-all duration-500 pointer-events-none z-10"></div>
+
+                    {{-- KONTEN TEKS (Menggunakan warna putih & abu-abu terang agar kontras di atas foto) --}}
+                    <div class="relative z-10 flex flex-col h-full flex-1">
+                        <div class="w-14 h-14 rounded-2xl {{ $kat['icon_bg'] }} flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-sm border border-white/10">
+                            <svg class="w-6 h-6 {{ $kat['icon_color'] }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="{{ $kat['icon_path'] }}"/>
+                            </svg>
+                        </div>
+
+                        <div class="flex items-center gap-2 mb-2">
+                            {{-- Judul putih tegas --}}
+                            <h3 class="font-headline font-bold text-white text-lg group-hover:text-white transition-colors duration-200">
+                                {{ $kat['label'] }}
+                            </h3>
+                        </div>
+
+                        {{-- Deskripsi dibikin abu-abu terang (text-gray-200) biar enak dibaca pas normal, dan pas di-hover tetep super aman --}}
+                        <p class="text-gray-200 text-sm leading-relaxed flex-1 font-medium">
+                            {{ $kat['deskripsi'] }}
+                        </p>
+
+                        <div class="flex items-center gap-1.5 mt-5 text-sm font-semibold text-white translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            Lihat Semua
+                            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </div>
                     </div>
 
-                    <p class="text-gray-400 text-sm leading-relaxed flex-1">
-                        {{ $kat['deskripsi'] }}
-                    </p>
-
-                    <div class="flex items-center gap-1.5 mt-5 text-sm font-semibold text-[#1A8DA3] opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                        Lihat Semua
-                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                    </div>
-
-                    <div class="absolute bottom-0 left-0 h-[3px] w-0 group-hover:w-full {{ $kat['icon_bg'] }} transition-all duration-400 rounded-b-3xl"></div>
+                    <div class="absolute bottom-0 left-0 h-[3px] w-0 group-hover:w-full {{ $kat['icon_bg'] }} transition-all duration-400 rounded-b-3xl z-20"></div>
                 </a>
                 @endforeach
             </div>
 
-            {{-- ── 🌟 INTEGRASI LIVE DATA KEDUA ── --}}
+            {{-- ── 🌟 INTEGRASI LIVE DATA KEDUA (TETAP UTUH) ── --}}
             <div class="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-                {{-- Kolom 1 & 2 Satuan: Berita / Kegiatan Terbaru --}}
+                {{-- Kolom 1 & 2 Satuan: Berita / Kegiatan Terbaru (TETAP UTUH) --}}
                 <div class="lg:col-span-2 space-y-4" data-aos="fade-up" data-aos-delay="0">
                     <div class="flex items-center justify-between mb-4">
                         <h4 class="font-headline font-bold text-gray-700 text-sm uppercase tracking-wider">Berita & Kegiatan Terbaru</h4>
@@ -524,8 +539,6 @@
                         <a href="/kegiatan/{{ \Illuminate\Support\Str::startsWith($artikel->slug, 'berita-') ? 'berita' : $artikel->kategori }}/{{ $artikel->slug }}" class="group flex flex-col bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-[#1A8DA3]/30 hover:shadow-md transition-all duration-250 block">
                             <div class="img-zoom relative h-40 w-full overflow-hidden bg-slate-100">
                                 <img src="{{ $artikel->thumbnail }}" alt="" class="w-full h-full object-cover">
-
-                                {{-- FIX REWRITE VISUAL BADGE: SINKRON KATEGORI IKUT SLUG PREFIX --}}
                                 <span class="absolute top-3 left-3 px-2 py-0.5 text-[9px] font-bold text-white bg-[#1A8DA3] rounded-md uppercase tracking-wide shadow-sm">
                                     @if($artikel->kategori == 'dokumentasi' && \Illuminate\Support\Str::startsWith($artikel->slug, 'berita-'))
                                         Berita Sekolah
@@ -551,7 +564,7 @@
                     </div>
                 </div>
 
-                {{-- Kolom 3 Satuan: Kalender Agenda Sekolah --}}
+                {{-- Kolom 3 Satuan: Kalender Agenda Sekolah (TETAP UTUH) --}}
                 <div data-aos="fade-up" data-aos-delay="200">
                     <div class="flex items-center justify-between mb-4">
                         <h4 class="font-headline font-bold text-gray-700 text-sm uppercase tracking-wider">📅 Agenda Sekolah Terdekat</h4>
@@ -561,7 +574,6 @@
                     <div class="space-y-3">
                         @forelse($agendas ?? [] as $agenda)
                         <div class="flex items-center gap-3.5 p-3 rounded-2xl border border-gray-100 bg-white hover:border-[#1A8DA3]/20 hover:shadow-sm transition-all duration-200">
-                            {{-- Mini Kotak Kalender Tanggal --}}
                             <div class="bg-[#1A8DA3]/10 text-[#1A8DA3] p-2.5 rounded-xl font-bold text-center min-w-[58px] flex-shrink-0">
                                 <span class="text-[9px] font-semibold block text-slate-500 uppercase leading-none mb-1">
                                     {{ \Carbon\Carbon::parse($agenda->tanggal_mulai)->locale('id')->isoFormat('MMM') }}
@@ -570,7 +582,6 @@
                                     {{ \Carbon\Carbon::parse($agenda->tanggal_mulai)->format('d') }}
                                 </span>
                             </div>
-                            {{-- Judul Agenda --}}
                             <div class="min-w-0">
                                 <h5 class="font-bold text-gray-800 text-xs truncate leading-tight">{{ $agenda->nama_kegiatan }}</h5>
                                 <p class="text-[10px] text-gray-400 mt-1 truncate">
@@ -585,7 +596,6 @@
                         @endforelse
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

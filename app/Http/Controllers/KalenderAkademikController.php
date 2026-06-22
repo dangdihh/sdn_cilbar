@@ -4,9 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KalenderAkademik;
+use Carbon\Carbon; // 👈 PASTIKAN INI DI-IMPORT UTK FILTER TANGGAL
 
 class KalenderAkademikController extends Controller
 {
+    /**
+     * TAMPILAN HALAMAN DEPAN USER (LANDING PAGE)
+     * Fungsi baru buat nembak variabel $agendaMendatang & $agendaLampau ke kalender.blade.php
+     */
+    public function showKalenderPublik()
+    {
+        // 1. Ambal agenda mendatang (tanggal mulai hari ini ke depan)
+        $agendaMendatang = KalenderAkademik::where('tanggal_mulai', '>=', Carbon::today())
+                            ->orderBy('tanggal_mulai', 'asc')
+                            ->get();
+
+        // 2. Ambil agenda lampau (tanggal mulai sudah lewat)
+        $agendaLampau = KalenderAkademik::where('tanggal_mulai', '<', Carbon::today())
+                            ->orderBy('tanggal_mulai', 'desc')
+                            ->get();
+
+        // 3. Oper bersih ke file blade depan lo
+        return view('kalender', compact('agendaMendatang', 'agendaLampau'));
+    }
+
     /**
      * Menampilkan daftar agenda kalender akademik di panel admin.
      */
