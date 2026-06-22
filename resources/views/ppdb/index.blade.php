@@ -19,7 +19,7 @@
                         Wujudkan Masa Depan <br>Cerah Bersama Kami
                     </h1>
                     <p class="text-sm text-slate-500 leading-relaxed max-w-xl">
-                        Selamat datang di Penerimaan Peserta Didik Baru SDN Ciledug Barat. Mari bergabung dalam lingkungan belajar yang Nurturing, Trustworthy, dan Joyful.
+                        Pendaftaran peserta didik baru telah dibuka. Jadilah bagian dari SDN Ciledug Barat dan wujudkan potensi terbaik putra-putri Anda melalui pendidikan yang berkualitas dan berkarakter.
                     </p>
                     <div class="flex flex-wrap gap-4 pt-2">
                         <a href="#formulir" class="px-6 py-3 bg-[#1A8DA2] hover:bg-[#126675] text-white text-xs font-bold rounded-full shadow-xs hover:shadow-md transition-all duration-200">
@@ -37,7 +37,7 @@
 
                 <div class="lg:col-span-5">
                     <div class="relative rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white aspect-[6/5]">
-                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=800" alt="Lapangan SDN Ciledug Barat" class="w-full h-full object-cover">
+                        <img src="https://oxpfyxpdfitdzsnftngj.supabase.co/storage/v1/object/public/fotocilbar/WhatsApp%20Image%202026-06-05%20at%2019.46.44%20(1)_4032_2268.webp" alt="Lapangan SDN Ciledug Barat" class="w-full h-full object-cover">
                     </div>
                 </div>
 
