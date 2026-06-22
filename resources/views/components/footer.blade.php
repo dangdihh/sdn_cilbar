@@ -203,11 +203,11 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-4">
                 <p class="text-[12px] text-gray-400 text-center sm:text-left">
-                    &copy; {{ date('Y') }} SDN Ciledug Barat. Hak cipta dilindungi undang-undang.
+                    &copy; {{ date('Y') }} UPTD SDN Ciledug Barat. Hak cipta dilindungi undang-undang.
                 </p>
                 <p class="text-[12px] text-gray-300 hidden sm:block">|</p>
                 <p class="text-[12px] text-gray-400">
-                    Dibuat dengan <span class="text-[#1A8DA3]" aria-label="cinta">♥</span> untuk pendidikan
+                    Dikembangkan oleh Kelompok Smart Class UI/UX Semester 2 | Teknik Informatika 25 | Intstitut Teknologi Indonesia
                 </p>
             </div>
 
