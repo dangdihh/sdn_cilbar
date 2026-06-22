@@ -229,7 +229,7 @@
 
                 <div id="hero-img" class="hero-img-wrap relative w-full max-w-lg cursor-none">
                     <div class="img-zoom rounded-3xl overflow-hidden border-[5px] border-white shadow-2xl shadow-[#1A8DA3]/20 relative z-10">
-                        <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80" alt="SDN Ciledug Barat" class="w-full h-80 md:h-96 object-cover">
+                        <img src="https://images.unplash.com/photo-1580582932707-520aed937b7b?w=800&q=80" alt="SDN Ciledug Barat" class="w-full h-80 md:h-96 object-cover">
                     </div>
 
                     <div class="float-element absolute -bottom-5 -left-5 z-20 glass-card rounded-2xl px-5 py-3 shadow-xl border border-white/60">
@@ -362,13 +362,13 @@
             <div class="relative" data-aos="fade-right" data-aos-duration="800">
                 <div class="grid grid-cols-2 gap-4">
                     <div class="img-zoom col-span-1 row-span-2 rounded-2xl overflow-hidden shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&q=80" alt="Kelas" class="w-full h-64 object-cover">
+                        <img src="https://oxpfyxpdfitdzsnftngj.supabase.co/storage/v1/object/public/fotocilbar/Foto%204x6.jpg" alt="Kelas" class="w-full h-64 object-cover">
                     </div>
                     <div class="bg-[#FFF59D] rounded-2xl p-5 flex flex-col justify-center shadow-md border border-yellow-200">
                         <div class="font-headline text-5xl font-black text-gray-800">A</div>
                         <div class="text-xs text-gray-600 mt-1 font-medium">Akreditasi Sekolah</div>
                     </div>
-                    
+
                     {{-- INTEGRASI FOTO GURU PERTAMA DINAMIS SEBAGAI SAMPEL PREVIEW --}}
                     <div class="img-zoom rounded-2xl overflow-hidden shadow-md bg-white flex items-center justify-center">
                         @if(isset($gurus) && $gurus->count() > 0)
@@ -518,13 +518,13 @@
                             Lihat Semua Berita →
                         </a>
                     </div>
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         @forelse($kegiatans ?? [] as $artikel)
                         <a href="/kegiatan/{{ \Illuminate\Support\Str::startsWith($artikel->slug, 'berita-') ? 'berita' : $artikel->kategori }}/{{ $artikel->slug }}" class="group flex flex-col bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-[#1A8DA3]/30 hover:shadow-md transition-all duration-250 block">
                             <div class="img-zoom relative h-40 w-full overflow-hidden bg-slate-100">
                                 <img src="{{ $artikel->thumbnail }}" alt="" class="w-full h-full object-cover">
-                                
+
                                 {{-- FIX REWRITE VISUAL BADGE: SINKRON KATEGORI IKUT SLUG PREFIX --}}
                                 <span class="absolute top-3 left-3 px-2 py-0.5 text-[9px] font-bold text-white bg-[#1A8DA3] rounded-md uppercase tracking-wide shadow-sm">
                                     @if($artikel->kategori == 'dokumentasi' && \Illuminate\Support\Str::startsWith($artikel->slug, 'berita-'))
@@ -557,7 +557,7 @@
                         <h4 class="font-headline font-bold text-gray-700 text-sm uppercase tracking-wider">📅 Agenda Sekolah Terdekat</h4>
                         <a href="/akademik/kalender" class="text-xs text-[#1A8DA3] font-semibold hover:underline">Lihat Semua →</a>
                     </div>
-                    
+
                     <div class="space-y-3">
                         @forelse($agendas ?? [] as $agenda)
                         <div class="flex items-center gap-3.5 p-3 rounded-2xl border border-gray-100 bg-white hover:border-[#1A8DA3]/20 hover:shadow-sm transition-all duration-200">

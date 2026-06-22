@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
-    HomeController, ArtikelController, PengumumanController, 
-    GuruController, KalenderAkademikController, KurikulumController, 
+    HomeController, ArtikelController, PengumumanController,
+    GuruController, KalenderAkademikController, KurikulumController,
     PpdbPendaftarController, AcademicController, PpdbController,
     EkskulController
 };
-use App\Http\Controllers\Auth\SocialiteController;  
+use App\Http\Controllers\Auth\SocialiteController;
 use App\Models\Fasilitas;
 use App\Models\Guru;
 
@@ -44,7 +44,7 @@ Route::prefix('pengumuman')->group(function () {
     Route::get('/{slug}', [PengumumanController::class, 'show'])->name('pengumuman.show');
 });
 
-// 4. PPDB PUBLIK 
+// 4. PPDB PUBLIK
 Route::prefix('ppdb')->group(function () {
     Route::get('/', [PpdbController::class, 'index'])->name('ppdb.index');
     Route::get('/formulir', [PpdbController::class, 'form'])->name('ppdb.formulir');
@@ -68,7 +68,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
 // --- JALUR DATA ADMIN PANEL LAINNYA ---
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
-    
+
     // Dashboard Utama Admin
     Route::get('/dashboard', [ArtikelController::class, 'adminDashboard'])->name('dashboard');
 
@@ -86,7 +86,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('guru', GuruController::class);
     Route::resource('kalender', KalenderAkademikController::class);
     Route::resource('kurikulum', KurikulumController::class);
-    
+
     // 5. PPDB Admin Panel
     Route::get('/ppdb/export-excel', [PpdbPendaftarController::class, 'exportExcel'])->name('ppdb.export');
     Route::get('/ppdb', [PpdbPendaftarController::class, 'index'])->name('ppdb.index');
