@@ -75,7 +75,7 @@
                 </div>
 
                 <p class="text-[10px] text-teal-50/80 leading-relaxed pt-2 border-t border-white/10 italic">
-                    *Pelayanan administrasi mengikuti kalender akademik sekolahan.
+                    *Pelayanan administrasi mengikuti kalender akademik sekolah.
                 </p>
             </div>
 
@@ -90,7 +90,7 @@
                 <div class="space-y-1">
                     <h4 class="text-xs font-bold text-slate-900 font-headline">Lokasi</h4>
                     <p class="text-[11px] text-slate-400 leading-normal">
-                        Jl. Raden Fatah No.1, Ciledug Barat, Tangerang, Banten 15153
+                        Jl. Haji Rean, Benda Baru, Kec. Pamulang, Kota Tangerang Selatan, Banten 15418
                     </p>
                 </div>
             </div>
@@ -114,7 +114,7 @@
                 <div class="space-y-1">
                     <h4 class="text-xs font-bold text-slate-900 font-headline">Surel Resmi</h4>
                     <p class="text-[11px] text-slate-400 leading-normal font-mono">
-                        info@sdnciledugbarat.sch.id <br>admin@sdnciledugbarat.sch.id
+                        sdnciledugbarat@gmail.com
                     </p>
                 </div>
             </div>
@@ -124,7 +124,7 @@
         <section class="max-w-7xl mx-auto px-6 lg:px-8 mb-8">
             <div class="relative bg-teal-900/5 rounded-3xl overflow-hidden border border-slate-200 shadow-xs aspect-[21/9] min-h-[220px]">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2737672236314!2d106.7027581!3d-6.2275914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTMnMzkuMyJTIDEwNiw0MicwOS45IkU!5e0!3m2!1sid!2sid!4v1716000000000!5m2!1sid!2sid"
+                    src="https://maps.app.goo.gl/t9J5hWaypgizm4K98"
                     class="absolute inset-0 w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-700 opacity-90"
                     allowfullscreen=""
                     loading="lazy"
@@ -136,7 +136,7 @@
                         <h4 class="text-xs font-bold text-slate-900 font-headline">SDN CILEDUG BARAT</h4>
                         <p class="text-[10px] text-slate-400">Klik untuk navigasi via Google Maps</p>
                     </div>
-                    <a href="https://maps.google.com" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-[10px] font-bold text-[#1A8DA2] hover:text-[#126675] transition-colors">
+                    <a href="https://maps.app.goo.gl/t9J5hWaypgizm4K98" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-[10px] font-bold text-[#1A8DA2] hover:text-[#126675] transition-colors">
                         BUKA PETA
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3 h-3"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
                     </a>
