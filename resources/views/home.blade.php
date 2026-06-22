@@ -212,7 +212,7 @@
                 </div>
 
                 <div class="flex flex-wrap gap-8 pt-4">
-                    @foreach([['500+','Siswa Aktif'],['20+','Ekskul'],['A','Akreditasi']] as $stat)
+                    @foreach([['350+','Siswa Aktif'],['18','Guru Berkompeten'],['A','Akreditasi BAN S/M']] as $stat)
                     <div>
                         <div class="font-headline text-2xl font-bold text-[#1A8DA3]">{{ $stat[0] }}</div>
                         <div class="text-xs text-gray-400 mt-0.5">{{ $stat[1] }}</div>
@@ -229,29 +229,16 @@
 
                 <div id="hero-img" class="hero-img-wrap relative w-full max-w-lg cursor-none">
                     <div class="img-zoom rounded-3xl overflow-hidden border-[5px] border-white shadow-2xl shadow-[#1A8DA3]/20 relative z-10">
-                        <img src="https://oxpfyxpdfitdzsnftngj.supabase.co/storage/v1/object/public/fotocilbar/WhatsApp%20Image%202026-06-05%20at%2019.46.41_4032_2268.webp" alt="SDN Ciledug Barat" class="w-full h-80 md:h-96 object-cover">
+                        <img src="https://oxpfyxpdfitdzsnftngj.supabase.co/storage/v1/object/public/fotocilbar/WhatsApp%20Image%202026-06-05%20at%2019.46.44%20(1)_4032_2268.webp" alt="SDN Ciledug Barat" class="w-full h-80 md:h-96 object-cover">
                     </div>
 
-                    <div class="float-element absolute -bottom-5 -left-5 z-20 glass-card rounded-2xl px-5 py-3 shadow-xl border border-white/60">
-                        <div class="flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-full bg-[#1A8DA3] flex items-center justify-center">
-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="font-semibold text-sm text-gray-800">Akreditasi A</div>
-                                <div class="text-xs text-gray-400">Terakreditasi BAN-S/M</div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="float-element absolute -top-4 -right-4 z-20 rounded-2xl shadow-xl overflow-hidden" style="animation-delay:1s">
                         <div class="bg-white border border-gray-100 px-4 py-2.5 flex items-center gap-2.5">
                             <div class="w-1.5 h-8 rounded-full bg-gradient-to-b from-[#1A8DA3] to-[#c9e84f]"></div>
                             <div>
-                                <div class="font-headline text-[9px] font-semibold tracking-widest text-gray-400 uppercase leading-none mb-0.5">Terakreditasi</div>
-                                <div class="font-headline text-sm font-bold text-gray-800 leading-tight">Sekolah Unggulan</div>
+                                <div class="font-headline text-[9px] font-semibold tracking-widest text-gray-400 uppercase leading-none mb-0.5">Metode Interaktif</div>
+                                <div class="font-headline text-sm font-bold text-gray-800 leading-tight">Kurikulum Merdeka</div>
                             </div>
                         </div>
                     </div>
@@ -369,7 +356,7 @@
                     {{-- KOTAK AKREDITASI (TETAP) --}}
                     <div class="bg-[#FFF59D] rounded-2xl p-5 flex flex-col justify-center shadow-md border border-yellow-200">
                         <div class="font-headline text-5xl font-black text-gray-800">A</div>
-                        <div class="text-xs text-gray-600 mt-1 font-medium">Akreditasi Sekolah</div>
+                        <div class="text-xs text-gray-600 mt-1 font-medium">Nomor SK Akreditasi 971/BAN-SM/SK/2019</div>
                     </div>
 
                     {{-- ── FOTO 2: FOTO PREVIEW GURU STATIS (SUDAH TIDAK DARI DATABASE) ── --}}
@@ -379,7 +366,7 @@
                 </div>
 
                 <div class="float-element absolute -bottom-6 -left-4 bg-[#1A8DA3] text-white rounded-2xl px-6 py-4 shadow-xl shadow-[#1A8DA3]/30 z-10">
-                    <div class="font-headline text-3xl font-bold">20+</div>
+                    <div class="font-headline text-3xl font-bold">3+</div>
                     <div class="text-xs mt-0.5 text-white/80">Ekstrakurikuler Unggulan</div>
                 </div>
                 <div class="absolute -top-6 -right-6 w-20 h-20 rounded-full border-4 border-[#1A8DA3]/20 pointer-events-none"></div>

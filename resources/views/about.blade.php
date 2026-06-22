@@ -28,7 +28,7 @@
                     </p>
                     <div class="pt-2 flex items-center gap-3 text-[#1A8DA2] font-semibold text-xs">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                        <span>Terakreditasi A Resmi</span>
+                        <span>Terakreditasi A oleh BAN S/M</span>
                     </div>
                 </div>
 
@@ -56,7 +56,7 @@
                     </div>
                     <h3 class="text-sm font-bold text-slate-900 font-headline">Visi Kami</h3>
                     <p class="text-slate-500 text-xs leading-relaxed font-normal">
-                        Menjadi lembaga pendidikan dasar yang unggul dalam melahirkan generasi bertakwa, cerdas intelektual, matang emosional, serta memiliki kepedulian tinggi terhadap kelestarian lingkungan sekitar pada tahun 2028.
+                        Menjadi sekolah dasar unggulan yang menghasilkan lulusan berakhlak mulia, cerdas, kreatif, dan mandiri.
                     </p>
                 </div>
 
@@ -68,15 +68,15 @@
                     <ul class="space-y-2.5 text-slate-500 text-xs font-normal">
                         <li class="flex items-start gap-2.5">
                             <svg class="w-4 h-4 text-[#1A8DA2] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                            <span>Menyelenggarakan proses pembelajaran aktif, kreatif, efektif, dan menyenangkan.</span>
+                            <span>Menyelenggarakan pendidikan berkualitas.</span>
                         </li>
                         <li class="flex items-start gap-2.5">
                             <svg class="w-4 h-4 text-[#1A8DA2] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                            <span>Menanamkan nilai budi pekerti keagamaan lewat pembiasaan aktivitas harian sekolah.</span>
+                            <span>Mengembangkan minat & bakat.</span>
                         </li>
                         <li class="flex items-start gap-2.5">
                             <svg class="w-4 h-4 text-[#1A8DA2] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                            <span>Mengembangkan minat bakat anak melalui program ekstrakurikuler terarah.</span>
+                            <span>Membangun ekosistem sekolah yang menyenangkan.</span>
                         </li>
                     </ul>
                 </div>
@@ -95,7 +95,7 @@
                 @if($kepalaSekolah)
                 <div class="bg-white border-2 border-[#1A8DA2] rounded-xl p-4 w-64 text-center shadow-sm relative group">
                     <div class="w-12 h-12 rounded-full overflow-hidden mx-auto mb-2.5 border-2 border-slate-100">
-                        <img src="{{ $kepalaSekolah->foto_url }}" 
+                        <img src="{{ $kepalaSekolah->foto_url }}"
                              alt="{{ $kepalaSekolah->nama }}" class="w-full h-full object-cover">
                     </div>
                     <h4 class="text-xs font-bold text-slate-900 font-headline">{{ $kepalaSekolah->nama }}</h4>
@@ -116,7 +116,7 @@
                     @foreach($wakilDanKaur as $item)
                         <div class="bg-white border-2 border-teal-500/20 rounded-xl p-4 text-center shadow-sm hover:border-[#1A8DA2] transition-all group">
                             <div class="w-11 h-11 rounded-full overflow-hidden mx-auto mb-2 border border-slate-100">
-                                <img src="{{ $item->foto_url }}" 
+                                <img src="{{ $item->foto_url }}"
                                      alt="{{ $item->nama }}" class="w-full h-full object-cover">
                             </div>
                             <h5 class="text-[11px] font-bold text-slate-900 font-headline">{{ $item->nama }}</h5>
@@ -152,12 +152,12 @@
 
                 @if($daftarFasilitas->isNotEmpty())
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                        
+
                         {{-- CARD UTAMA/PERTAMA (Besar - md:col-span-7) --}}
                         @php $firstFasilitas = $daftarFasilitas->first(); @endphp
                         <div class="md:col-span-7 relative h-72 md:h-96 rounded-2xl overflow-hidden shadow-sm border border-white group">
-                            <img src="{{ $firstFasilitas->foto ?? 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=800' }}" 
-                                 alt="{{ $firstFasilitas->nama_fasilitas }}" 
+                            <img src="{{ $firstFasilitas->foto ?? 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=800' }}"
+                                 alt="{{ $firstFasilitas->nama_fasilitas }}"
                                  class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent flex flex-col justify-end p-5">
                                 <h4 class="text-white text-sm font-bold font-headline">{{ $firstFasilitas->nama_fasilitas }}</h4>
@@ -169,8 +169,8 @@
                         <div class="md:col-span-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-4">
                             @foreach($daftarFasilitas->skip(1) as $f)
                                 <div class="relative h-44 rounded-2xl overflow-hidden shadow-sm border border-white group">
-                                    <img src="{{ $f->foto ?? 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=600' }}" 
-                                         alt="{{ $f->nama_fasilitas }}" 
+                                    <img src="{{ $f->foto ?? 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=600' }}"
+                                         alt="{{ $f->nama_fasilitas }}"
                                          class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500">
                                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent flex flex-col justify-end p-4">
                                         <h4 class="text-white text-xs font-bold font-headline">{{ $f->nama_fasilitas }}</h4>
