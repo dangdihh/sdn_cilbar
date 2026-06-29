@@ -308,7 +308,7 @@
                         {{ \Carbon\Carbon::parse($item->published_at)->locale('id')->isoFormat('D MMM YYYY') }}
                     </div>
 
-                    <h3 class="font-headline text-lg font-bold text-gray-900 mb-2 group-hover:text-[#1A8DA3] transition-colors duration-200 line-clamp-2">
+                    <h3 class="font-headline text-base font-bold text-gray-900 mb-2 group-hover:text-[#1A8DA3] transition-colors duration-200 line-clamp-2">
                         {{ $item->title }}
                     </h3>
 
@@ -415,8 +415,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $item['icon'] }}"/>
                             </svg>
                         </div>
-                        <div class="font-headline font-bold text-gray-800 text-sm mb-1.5">{{ $item['title'] }}</div>
-                        <p class="text-gray-500 text-xs leading-relaxed">{{ $item['desc'] }}</p>
+                        <div class="font-headline font-bold text-gray-800 text-base mb-1.5">{{ $item['title'] }}</div>
+                        <p class="text-gray-500 text-sm leading-relaxed">{{ $item['desc'] }}</p>
                     </div>
                     @endforeach
 
@@ -549,7 +549,7 @@
                             </div>
                             <div class="p-4 min-w-0 flex-1 flex flex-col justify-between">
                                 <p class="text-sm font-bold text-gray-800 group-hover:text-[#1A8DA3] transition-colors duration-200 line-clamp-2 leading-snug">{{ $artikel->title }}</p>
-                                <p class="text-[11px] text-gray-400 mt-2 flex items-center gap-1">
+                                <p class="text-xs text-gray-400 mt-2 flex items-center gap-1">
                                     <span>🕒</span> {{ \Carbon\Carbon::parse($artikel->published_at)->locale('id')->isoFormat('D MMMM YYYY') }}
                                 </p>
                             </div>
@@ -573,7 +573,7 @@
                         @forelse($agendas ?? [] as $agenda)
                         <div class="flex items-center gap-3.5 p-3 rounded-2xl border border-gray-100 bg-white hover:border-[#1A8DA3]/20 hover:shadow-sm transition-all duration-200">
                             <div class="bg-[#1A8DA3]/10 text-[#1A8DA3] p-2.5 rounded-xl font-bold text-center min-w-[58px] flex-shrink-0">
-                                <span class="text-[9px] font-semibold block text-slate-500 uppercase leading-none mb-1">
+                                <span class="text-xs font-semibold block text-slate-500 uppercase leading-none mb-1">
                                     {{ \Carbon\Carbon::parse($agenda->tanggal_mulai)->locale('id')->isoFormat('MMM') }}
                                 </span>
                                 <span class="text-base leading-none">
@@ -582,7 +582,7 @@
                             </div>
                             <div class="min-w-0">
                                 <h5 class="font-bold text-gray-800 text-xs truncate leading-tight">{{ $agenda->nama_kegiatan }}</h5>
-                                <p class="text-[10px] text-gray-400 mt-1 truncate">
+                                <p class="text-xs text-gray-400 mt-1 truncate">
                                     {{ $agenda->keterangan ?? 'Agenda Resmi Sekolah' }}
                                 </p>
                             </div>
